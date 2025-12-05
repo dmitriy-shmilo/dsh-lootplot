@@ -1,4 +1,7 @@
-local SPIRAL_STEPS = 45
+local commandLookup = {}
+local lastCommand = ""
+local lastClientId = ""
+local lastArgs = {}
 
 -- taken from lootplot.singleplayer/shared/devtools.lua
 local function getPPos(clientId)
@@ -9,10 +12,10 @@ local function getPPos(clientId)
     return plot:getClosestPPos(player.x, player.y)
 end
 
-
 -- spawn an item at the center of the screen or a nearby suitable slot
 -- TODO: implement an entity name lookup
-chat.handleCommand("si", {
+local SPIRAL_STEPS = 45
+commandLookup["si"] = {
     adminLevel = 120,
     arguments = {
         {name = "entityType", type = "string"},
@@ -21,6 +24,10 @@ chat.handleCommand("si", {
         if not server then
             return
         end
+
+        lastCommand = "si"
+        lastArgs = { etype }
+        lastClientId = clientId
 
         local ent = server.entities[etype]
         if (not ent) then
@@ -69,24 +76,32 @@ chat.handleCommand("si", {
 
         chat.privateMessage(clientId, "Can not spawn " .. etype .. ": can't find a suitable nearby slot.")
     end
-})
+}
 
 -- spawn a slot at the center of the screen, replacing any slot that was there previously
 -- accepts, optionally, a slot type name (string, defaults to "slot") and size (number, defaults to 0)
-chat.handleCommand("ss", {
+commandLookup["ss"] = {
     adminLevel = 120,
     arguments = {},
-    handler = function(clientId, arg1, arg2)
+    handler = function(clientId, ...)
+        if not server then
+            return
+        end
+
+        lastCommand = "ss"
+        lastArgs = {...}
+        lastClientId = clientId
+
         local slotType = "slot"
         local size = 0
-        if arg1 then
-            if arg2 then
-                slotType = arg1
-                size = tonumber(arg2) or 0
-            elseif tonumber(arg1) then
-                size = tonumber(arg1) or 0
+        if #lastArgs >= 2 then
+            slotType = lastArgs[1] or "slot"
+            size = tonumber(lastArgs[2]) or 0
+        elseif #lastArgs == 1 then
+            if tonumber(lastArgs[1]) then
+                size = tonumber(lastArgs[1]) or 0
             else
-                slotType = arg1
+                slotType = lastArgs[1]
             end
         end
 
@@ -110,4 +125,30 @@ chat.handleCommand("ss", {
             end
         end
     end
+}
+
+for name, handler in pairs(commandLookup) do
+    chat.handleCommand(name, handler)
+end
+
+-- re-execute the last successfully executed command
+chat.handleCommand("", {
+    adminLevel = 120,
+    arguments = {},
+    handler = function(clientId, ...)
+        if not lastCommand then
+            return
+        end
+        if not lastArgs then
+            lastArgs = {}
+        end
+        
+        local command = commandLookup[lastCommand]
+        if not command then
+            return
+        end
+        command.handler(lastClientId, unpack(lastArgs))
+    end
 })
+
+
