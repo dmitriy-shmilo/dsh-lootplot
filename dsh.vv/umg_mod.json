@@ -1,0 +1,15 @@
+{
+    "type": "addon",
+    "name": "DSH Vanilla Variety",
+    "description": "Adds vanilla item variants.",
+    "author": "Dmitriy Shmilo",
+    "source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
+    "uses": [
+        "dsh-lib",
+        "localization",
+        "lootplot",
+        "lootplot.targets",
+        "lootplot.rarities",
+        "lootplot.slots"
+    ]
+}
