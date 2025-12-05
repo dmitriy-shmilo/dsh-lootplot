@@ -1,4 +1,4 @@
-local lib = {
+local client_lib = {
     colors = {
         NICE_GREEN = objects.Color(49/255,189/255,32/255)
     }
@@ -22,7 +22,7 @@ local function printCenterWithOutline(text, x, y, rot, sx, sy, oy, kx, ky)
     love.graphics.printf(text, x, y, TEXT_MAX_WIDTH, "center", rot, sx, sy, ox, oy, kx, ky)
 end
 
-lib.drawDelayItemNumber = function (ent, delayCount)
+client_lib.drawDelayItemNumber = function (ent, delayCount)
     local totActivs = (ent.totalActivationCount or 0)
     local remaining = delayCount - totActivs
     if totActivs > 0 then
@@ -44,6 +44,4 @@ lib.drawDelayItemNumber = function (ent, delayCount)
     end
 end
 
-umg.expose("lib", lib)
-
-return lib
+return client_lib
