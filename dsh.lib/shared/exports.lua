@@ -20,8 +20,41 @@ local lib = {
         GLASS_SLOT = "lootplot.s0:glass_slot",
         BASIC_SLOT = "lootplot.s0:basic_slot",
         SHOP_SLOT = "lootplot.s0:shop_slot",
+
+        -- custom tags
+        RECORD = "dsh.vv:record"
+    },
+
+    -- vanilla entities, which need to be treated as if they have certain tags
+    -- used with lib.hasTag
+    TAGGED_ENTITIES = {
+    },
     }
 }
+
+local taggedEntities = {
+}
+
+taggedEntities[lib.tags.RECORD] = {
+    "lootplot.s0:record_green", 
+    "lootplot.s0:record_blue", 
+    "lootplot.s0:record_golden", 
+    "lootplot.s0:record_white", 
+    "lootplot.s0:record_red"
+}
+
+for tag, entities in pairs(taggedEntities) do
+    for _, entity in pairs(entities) do
+        local backTags = lib.TAGGED_ENTITIES[entity] or {}
+        backTags[tag] = true
+        lib.TAGGED_ENTITIES[entity] = backTags
+    end    
+end
+
+lib.hasTag = function(ent, tag)
+    local backTags = lib.TAGGED_ENTITIES[ent:type()] or {}
+    return backTags[tag] or lp.hasTag(ent, tag)
+end
 
 if client then
     lib.c = require("client.client_lib")
