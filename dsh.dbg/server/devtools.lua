@@ -122,7 +122,9 @@ commandLookup["ss"] = {
         for x = -size, size do
             for y = -size, size do
                 local cursor = ppos:move(x, y)
-                lp.forceSpawnSlot(cursor, ctor, lp.singleplayer.PLAYER_TEAM)
+                if cursor then
+                    lp.forceSpawnSlot(cursor, ctor, lp.singleplayer.PLAYER_TEAM)
+                end
             end
         end
     end
