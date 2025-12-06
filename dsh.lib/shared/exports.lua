@@ -29,8 +29,16 @@ local lib = {
     -- used with lib.hasTag
     TAGGED_ENTITIES = {
     },
+
+    REROLLABLE_RARITIES = {
     }
 }
+
+lib.REROLLABLE_RARITIES[lp.rarities.COMMON] = true
+lib.REROLLABLE_RARITIES[lp.rarities.UNCOMMON] = true
+lib.REROLLABLE_RARITIES[lp.rarities.RARE] = true
+lib.REROLLABLE_RARITIES[lp.rarities.EPIC] = true
+lib.REROLLABLE_RARITIES[lp.rarities.LEGENDARY] = true
 
 local taggedEntities = {
 }

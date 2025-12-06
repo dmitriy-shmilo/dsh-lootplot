@@ -113,6 +113,7 @@ commandLookup["ss"] = {
 
         if (not lp.isSlotEntity(ctor)) then
             chat.privateMessage(clientId, "Can not spawn " .. slotType .. ": not a slot type.")
+            return
         end
 
         local ppos = getPPos(clientId)
