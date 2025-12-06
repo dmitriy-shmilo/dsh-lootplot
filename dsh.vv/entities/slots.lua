@@ -105,6 +105,7 @@ lp.defineSlot("dsh.vv:reroll_fair_slot", {
 
     onActivate = function(slotEnt)
         local item = lp.slotToItem(slotEnt)
+        if not item then return end
 
         local r = item.rarity
         if not lib.REROLLABLE_RARITIES[r] then
