@@ -30,7 +30,7 @@ client_lib.drawDelayItemNumber = function (ent, delayCount)
         local dx,dy=0,3
         if remaining <= 1 then
             txt = "!!!"
-            color = NICE_GREEN
+            color = client_lib.colors.NICE_GREEN
             local t = (love.timer.getTime() * 10)
             dx = 2 * math.sin(t)
         else
