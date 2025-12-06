@@ -4,6 +4,7 @@
     "description": "Adds vanilla item variants.",
     "author": "Dmitriy Shmilo",
     "source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
+    "version": 0,
     "uses": [
         "dsh-lib",
         "localization",
