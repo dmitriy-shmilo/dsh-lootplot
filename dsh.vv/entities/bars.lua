@@ -1,17 +1,75 @@
 local loc = localization.localize
 local interp = localization.newInterpolator
 
-
 local BAR_DESC = interp("After {lootplot:INFO_COLOR}%{count} activations{/lootplot:INFO_COLOR}, spawns a %{spawnTarget}.")
 
-local BAR_ACT_CURSED = 8
+-- taken from lootplot.s0.worldgen\entities\basic_worldgen.lua without changes
+local function spawnLockedChest(ppos, team)
+    local slotEnt = server.entities.null_slot()
+    slotEnt.lootplotTeam = team
+
+    local r = lp.SEED:randomWorldGen()
+    local itemEnt
+    if r < 0.85 then
+        itemEnt = server.entities.chest_epic()
+    else
+        itemEnt = server.entities.chest_legendary()
+    end
+    itemEnt.stuck = true
+    itemEnt.lootplotTeam = team
+    lp.unlocks.forceSpawnLockedSlot(ppos, slotEnt, itemEnt)
+end
+
+-- taken from lootplot.s0.worldgen\entities\basic_worldgen.lua without changes
+local function spawnLockedIncomeSlot(ppos, team, islandSize)
+    local slotId = "lootplot.s0:slot"
+    local slotEnt = server.entities[slotId]()
+    slotEnt.baseMoneyGenerated = 1
+    slotEnt.lootplotTeam = team
+
+    if islandSize > 5 then
+        slotEnt.doomCount = 2
+    elseif islandSize > 2 then
+        slotEnt.doomCount = 3
+    else
+        slotEnt.doomCount = 4
+    end
+    local itemEnt = nil
+
+    lp.unlocks.forceSpawnLockedSlot(ppos, slotEnt, itemEnt)
+end
+
+-- taken from lootplot.s0.worldgen\entities\basic_worldgen.lua without changes
+local function spawnLockedOfferSlot(ppos, team)
+    local slotEnt = server.entities["lootplot.s0:offer_slot"]()
+    slotEnt.lootplotTeam = team
+
+    local rar = lp.rarities.RARE
+    local r = lp.SEED:randomWorldGen()
+    if (r < 0.02) then
+        rar = lp.rarities.LEGENDARY
+    elseif (r < 0.2) then
+        rar = lp.rarities.EPIC
+    end
+
+    local itemType = lp.rarities.randomItemOfRarity(rar, lp.SEED.worldGenRNG)
+    local itemEnt = itemType and itemType()
+    if itemEnt then
+        itemEnt.lootplotTeam = team
+        lp.unlocks.forceSpawnLockedSlot(ppos, slotEnt, itemEnt)
+    else
+        umg.log.error("Waht the HECK. why didnt it spawn??", itemType)
+    end
+end
+
+local BAR_ACT_CURSED = 12
 lp.defineItem("dsh.vv:bar_cursed", {
     name = loc("Cursed Bar"),
     image = "dsh_bar_cursed",
     triggers = { "PULSE" },
     canItemFloat = true,
     basePrice = 13,
-    baseMaxActivations = 4,
+    baseMaxActivations = BAR_ACT_CURSED / 2,
     rarity = lp.rarities.RARE,
     activateDescription = function (ent)
         return  BAR_DESC({
@@ -25,7 +83,7 @@ lp.defineItem("dsh.vv:bar_cursed", {
             if ppos then
                 lp.forceSpawnSlot(ppos, server.entities["curse_button_slot"], ent.lootplotTeam)
             end
-            lp.destroy(ent)
+            lib.erase(ent)
         end
     end,
 
@@ -34,19 +92,19 @@ lp.defineItem("dsh.vv:bar_cursed", {
     end
 })
 
-local BAR_ACT_MYSTERY = 10
+local BAR_ACT_MYSTERY = 8
 lp.defineItem("dsh.vv:bar_mystery", {
     name = loc("Mystery Bar"),
     image = "dsh_bar_mystery",
     triggers = { "PULSE" },
     canItemFloat = true,
     basePrice = 11,
-    baseMaxActivations = 5,
+    baseMaxActivations = BAR_ACT_MYSTERY / 2,
     rarity = lp.rarities.RARE,
 
     activateDescription = function (ent)
         return  BAR_DESC({
-            count = BAR_ACT_CURSED - (ent.totalActivationCount or 0),
+            count = BAR_ACT_MYSTERY - (ent.totalActivationCount or 0),
             spawnTarget = "Locked Slot"
         })
     end,
@@ -54,9 +112,16 @@ lp.defineItem("dsh.vv:bar_mystery", {
         if (ent.totalActivationCount or 0) > BAR_ACT_MYSTERY - 1 then
             local ppos = lp.getPos(ent)
             if ppos then
-                lp.forceSpawnSlot(ppos, server.entities["locked_slot"], ent.lootplotTeam)
+                local r = lp.SEED:randomWorldGen()
+                if r < 0.33 then
+                    spawnLockedChest(ppos, ent.lootplotTeam)
+                elseif r < 0.66 then
+                    spawnLockedOfferSlot(ppos, ent.lootplotTeam)
+                else
+                    spawnLockedOfferSlot(ppos, ent.lootplotTeam, 1)
+                end
             end
-            lp.destroy(ent)
+            lib.erase(ent)
         end
     end,
 
@@ -87,7 +152,7 @@ lp.defineItem("dsh.vv:bar_orichalcum", {
             if ppos then
                 lp.forceSpawnSlot(ppos, server.entities["reversal_button_slot"], ent.lootplotTeam)
             end
-            lp.destroy(ent)
+            lp.erase(ent)
         end
     end,
 
@@ -96,7 +161,7 @@ lp.defineItem("dsh.vv:bar_orichalcum", {
     end
 })
 
-local BAR_ACT_TAX = 5
+local BAR_ACT_TAX = 8
 lp.defineItem("dsh.vv:bar_copper", {
     name = loc("Copper Bar"),
     image = "dsh_bar_copper",
@@ -118,7 +183,7 @@ lp.defineItem("dsh.vv:bar_copper", {
             if ppos then
                 lp.forceSpawnSlot(ppos, server.entities["tax_button_slot"], ent.lootplotTeam)
             end
-            lp.destroy(ent)
+            lp.erase(ent)
         end
     end,
 

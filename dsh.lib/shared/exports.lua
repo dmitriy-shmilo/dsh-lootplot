@@ -59,9 +59,19 @@ for tag, entities in pairs(taggedEntities) do
     end    
 end
 
+-- checks whether the entity has the specified tag, or is
+-- backtagged in lib.TAGGED_ENTITIES
 lib.hasTag = function(ent, tag)
     local backTags = lib.TAGGED_ENTITIES[ent:type()] or {}
     return backTags[tag] or lp.hasTag(ent, tag)
+end
+
+-- destroys entity, draining all of its lives first
+lib.erase = function(ent)
+    if ent.lives then
+        ent.lives = ent.lives - 1
+    end
+    lp.destroy(ent)
 end
 
 if client then
