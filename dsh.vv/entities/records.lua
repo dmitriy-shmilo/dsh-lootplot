@@ -1,23 +1,5 @@
 local loc = localization.localize
 
--- TODO: looks like a lib function candidate
--- see https://stackoverflow.com/a/68486276
-local function shuffledRandom(t)
-    local len = #t
-    if len < 2 then
-        return t
-    end
-
-    local s = {}
-    for i = 1, #t do s[i] = t[i] end
-    for i = #t, 2, -1 do
-        local j = math.random(i)
-        s[i], s[j] = s[j], s[i]
-    end
-    return s
-end
-
-
 lp.defineTag("dsh.vv:record")
 
 lp.defineItem("dsh.vv:record_plain", {
@@ -138,7 +120,7 @@ lp.defineItem("dsh.vv:record_star", {
             end
         end
 
-        values = shuffledRandom(values)
+        values = lib.shuffledRandom(values)
 
         for i, ent in ipairs(entities) do
             local value = values[i]

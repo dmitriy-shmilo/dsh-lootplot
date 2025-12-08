@@ -74,4 +74,22 @@ lib.erase = function(ent)
     lp.destroy(ent)
 end
 
+-- returns a new array, with shuffled elements
+-- see https://stackoverflow.com/a/68486276
+-- if the input contains 1 or less elements, returns input
+lib.shuffledRandom = function (t)
+    local len = #t
+    if len < 2 then
+        return t
+    end
+
+    local s = {}
+    for i = 1, #t do s[i] = t[i] end
+    for i = #t, 2, -1 do
+        local j = math.random(i)
+        s[i], s[j] = s[j], s[i]
+    end
+    return s
+end
+
 return lib
