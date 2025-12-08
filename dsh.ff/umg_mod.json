@@ -1,0 +1,16 @@
+{
+    "type": "addon",
+    "name": "DSH Fab Foods",
+    "description": "Adds new food and drink items.",
+    "author": "Dmitriy Shmilo",
+    "source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
+    "version": 0,
+    "uses": [
+        "dsh-lib",
+        "localization",
+        "lootplot",
+        "lootplot.targets",
+        "lootplot.rarities",
+        "lootplot.slots"
+    ]
+}
