@@ -10,7 +10,7 @@ lp.defineItem("dsh.vv:record_plain", {
     triggers = { "ROTATE" },
     baseMaxActivations = 6,
     basePrice = 4,
-    rarity = lp.rarities.COMMON
+    rarity = lp.rarities.RARE
 })
 
 
@@ -22,7 +22,7 @@ lp.defineItem("dsh.vv:record_teal", {
     triggers = { "ROTATE" },
     baseMaxActivations = 6,
     basePrice = 6,
-    rarity = lp.rarities.UNCOMMON
+    rarity = lp.rarities.RARE
 })
 
 lp.defineItem("dsh.vv:record_pink", {
