@@ -1,12 +1,6 @@
 -- see lootplot.s0\entities\slots\shop_reroll_slots.lua
 local loc = localization.localize
 
-local DEFAULT_RARITY_WEIGHTS = {
-    COMMON = 10,
-    UNCOMMON = 1,
-    RARE = 0.03,
-    EPIC = 0.02
-}
 local _itemGeneratorsByRarity = {}
 local _defaultItemGenerator
 
@@ -54,7 +48,7 @@ local function getDefaultItemGenerator()
         adjustWeights = function(item, _)
             local etype = server.entities[item]
             if etype.rarity then
-                return DEFAULT_RARITY_WEIGHTS[etype.rarity] or 0
+                return lib.SHOP_RARITY_WEIGHTS[etype.rarity] or 0
             end
             return 0
         end

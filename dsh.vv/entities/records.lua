@@ -1,7 +1,5 @@
 local loc = localization.localize
 
-lp.defineTag("dsh.vv:record")
-
 lp.defineItem("dsh.vv:record_plain", {
     name = loc("Plain Record"),
     image = "dsh_record_plain",

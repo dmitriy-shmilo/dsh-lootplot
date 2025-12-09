@@ -22,7 +22,8 @@ local lib = {
         SHOP_SLOT = "lootplot.s0:shop_slot",
 
         -- custom tags
-        RECORD = "dsh.vv:record"
+        RECORD = "dsh.lib:record",
+        WEAPON = "dsh.lib:weapon"
     },
 
     -- vanilla entities, which need to be treated as if they have certain tags
@@ -31,6 +32,15 @@ local lib = {
     },
 
     REROLLABLE_RARITIES = {
+    },
+
+    -- default weights to use when rolling for items,
+    -- used by shops and reroll slots
+    SHOP_RARITY_WEIGHTS = {
+        COMMON = 10,
+        UNCOMMON = 1,
+        RARE = 0.03,
+        EPIC = 0.02
     }
 }
 
@@ -51,23 +61,67 @@ taggedEntities[lib.tags.RECORD] = {
     "lootplot.s0:record_red"
 }
 
+taggedEntities[lib.tags.WEAPON] = {
+    "lootplot.s0:shuriken",
+    "lootplot.s0:morning_star",
+    "lootplot.s0:dagger",
+    "lootplot.s0:golden_dagger",
+    "lootplot.s0:lava_sword",
+    "lootplot.s0:water_sword",
+    "lootplot.s0:boomerang",
+    "lootplot.s0:golden_knuckles",
+    "lootplot.s0:curse_knife",
+    "lootplot.s0:ghost_knife",
+    "lootplot.s0:demon_knife",
+    "lootplot.s0:lokis_axe",
+    "lootplot.s0:odins_axe"
+}
+
+local material = { "iron", "ruby", "emerald", "golden" }
+local weaponTypes = { "sword", "axe", "spear", "hammer", "crossbow", "greatsword" }
+
+for _, m in pairs(material) do
+    for _, w in pairs(weaponTypes) do
+        table.insert(taggedEntities[lib.tags.WEAPON], "lootplot.s0:" .. m .. "_" .. w)
+    end
+end
+
 for tag, entities in pairs(taggedEntities) do
     for _, entity in pairs(entities) do
         local backTags = lib.TAGGED_ENTITIES[entity] or {}
         backTags[tag] = true
         lib.TAGGED_ENTITIES[entity] = backTags
-    end    
+    end
 end
 
--- checks whether the entity has the specified tag, or is
--- backtagged in lib.TAGGED_ENTITIES
-lib.hasTag = function(ent, tag)
-    local backTags = lib.TAGGED_ENTITIES[ent:type()] or {}
-    return backTags[tag] or lp.hasTag(ent, tag)
+lp.defineTag(lib.tags.WEAPON)
+lp.defineTag(lib.tags.RECORD)
+
+-- Checks whether the entity has the specified tag, or is
+-- backtagged in lib.TAGGED_ENTITIES.
+-- @param entOrType Entity|string either an entity or an entity type name.
+-- @param tag string a tag to check for.
+lib.hasTag = function(entOrType, tag)
+    local typeName
+    local etype
+
+    if not entOrType or not tag then return false end
+    
+    if type(entOrType) == "table" and entOrType.type then
+        typeName = entOrType:type()
+        etype = entOrType
+    elseif type(entOrType) == "string" then
+        typeName = entOrType
+        etype = server.entities[typeName]
+    end
+    
+    local backTags = lib.TAGGED_ENTITIES[typeName] or {}
+    return backTags[tag] or lp.hasTag(etype, tag)
 end
 
 -- destroys entity, draining all of its lives first
 lib.erase = function(ent)
+    if not ent then return end
     if ent.lives then
         ent.lives = ent.lives - 1
     end
