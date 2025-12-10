@@ -48,7 +48,7 @@ local function getDefaultItemGenerator()
         adjustWeights = function(item, _)
             local etype = server.entities[item]
             if etype.rarity then
-                return lib.SHOP_RARITY_WEIGHTS[etype.rarity] or 0
+                return lib.SHOP_RARITY_WEIGHTS[etype.rarity.id] or 0
             end
             return 0
         end
@@ -62,7 +62,7 @@ local UNLOCK_TEXT = loc("Unlock")
 local LOCK_REROLL_BUTTON = {
     action = function(ent, clientId)
         if server then
-            ent.rerollLock = bool
+            ent.rerollLock = not ent.rerollLock
             sync.syncComponent(ent, "rerollLock")
         end
     end,
@@ -171,7 +171,7 @@ lp.defineSlot("dsh.vv:reroll_grubby_slot", {
     onPostActivate = function(ent)
         local itemEnt = lp.slotToItem(ent)
         if itemEnt then
-            itemEnt.grubMoneyCap = false
+            itemEnt.grubMoneyCap = true
             sync.syncComponent(itemEnt, "grubMoneyCap")
         end
     end,

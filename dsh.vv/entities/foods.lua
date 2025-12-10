@@ -1,3 +1,4 @@
+local slots = require("shared.slots")
 local loc = localization.localize
 
 lp.defineItem("dsh.vv:marble_apple", {
@@ -64,14 +65,6 @@ lp.defineItem("dsh.vv:unripe_avocado", {
     }
 })
 
--- FIXME: shared with books.lua, should be extracted to lib
-local REROLL_SLOT_KEYS = {
-    "lootplot.s0:reroll_slot",
-    "dsh.vv:reroll_fair_slot",
-    "dsh.vv:reroll_doomed_slot",
-    "dsh.vv:reroll_grubby_slot",
-}
-
 lp.defineItem("dsh.vv:bergamot", {
     image = "dsh_bergamot",
     name = loc("Bergamot"),
@@ -92,12 +85,12 @@ lp.defineItem("dsh.vv:bergamot", {
         end,
         activate = function (selfEnt, ppos)
             -- FIXME: should probably be weighted random
-            local idx = lp.SEED:randomMisc(1, #REROLL_SLOT_KEYS)
-            local slotEType = server.entities[REROLL_SLOT_KEYS[idx]]
+            local idx = lp.SEED:randomMisc(1, #slots.REROLL_SLOT_KEYS)
+            local slotEType = server.entities[slots.REROLL_SLOT_KEYS[idx]]
             if not slotEType then
                 return
             end
-            local slotEnt = lp.trySpawnSlot(ppos, etype, selfEnt.lootplotTeam)
+            local slotEnt = lp.trySpawnSlot(ppos, slotEType, selfEnt.lootplotTeam)
             if slotEnt then
                 slotEnt.doomCount = 5
             end

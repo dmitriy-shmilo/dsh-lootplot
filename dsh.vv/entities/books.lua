@@ -1,3 +1,4 @@
+local slots = require("shared.slots")
 local loc = localization.localize
 
 lp.defineItem("dsh.vv:book_of_recipes", {
@@ -129,21 +130,6 @@ lp.defineItem("dsh.vv:book_of_minerals", {
     }
 })
 
-local REROLL_SLOTS = {
-}
-
-REROLL_SLOTS["lootplot.s0:reroll_slot"] = true
-REROLL_SLOTS["dsh.vv:reroll_fair_slot"] = true
-REROLL_SLOTS["dsh.vv:reroll_doomed_slot"] = true
-REROLL_SLOTS["dsh.vv:reroll_grubby_slot"] = true
-
-local REROLL_SLOT_KEYS = {
-    "lootplot.s0:reroll_slot",
-    "dsh.vv:reroll_fair_slot",
-    "dsh.vv:reroll_doomed_slot",
-    "dsh.vv:reroll_grubby_slot",
-}
-
 lp.defineItem("dsh.vv:book_of_random_rerolling", {
     name = loc("Book of Random Rerolling"),
     image = "dsh_book_of_random_rerolling",
@@ -158,11 +144,11 @@ lp.defineItem("dsh.vv:book_of_random_rerolling", {
     target = {
         type = "SLOT",
         filter = function(selfEnt, ppos, targetEnt)
-            return REROLL_SLOTS[targetEnt:type()]
+            return slots.REROLL_SLOTS[targetEnt:type()]
         end,
         activate = function(selfEnt, ppos)
-            local idx = lp.SEED:randomMisc(1, #REROLL_SLOT_KEYS)
-            local slotEType = server.entities[REROLL_SLOT_KEYS[idx]]
+            local idx = lp.SEED:randomMisc(1, #slots.REROLL_SLOT_KEYS)
+            local slotEType = server.entities[slots.REROLL_SLOT_KEYS[idx]]
             if not slotEType then
                 return
             end
