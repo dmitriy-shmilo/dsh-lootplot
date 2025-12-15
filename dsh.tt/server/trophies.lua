@@ -2,7 +2,8 @@ local trophies = require("shared.trophies")
 local trophiesByTrigger = {
     PULSE = {},
     REROLL = {},
-    LEVEL_UP = {}
+    LEVEL_UP = {},
+    TROPHY_TICK = {}
 }
 local run = nil
 
@@ -19,6 +20,7 @@ end
 umg.defineEvent("dsh.tt:pulsed")
 umg.defineEvent("dsh.tt:leveled")
 umg.defineEvent("dsh.tt:rerolled")
+umg.defineEvent("dsh.tt:trophyTick")
 
 umg.on("dsh.tt:trophyDefined", function(t)
     if not t.id or not t then return end
@@ -27,7 +29,11 @@ umg.on("dsh.tt:trophyDefined", function(t)
     if t:isUnlocked() then return end
 
     for _, g in pairs(triggers) do
-        table.insert(trophiesByTrigger[g], t)
+        if not trophiesByTrigger[g] then
+            umg.log.error("Invalid trigger " .. g .. " defined for " .. t.id)
+        else
+            table.insert(trophiesByTrigger[g], t)
+        end
     end
 end)
 
@@ -51,6 +57,12 @@ umg.on("lootplot:entityActivated", function(ent)
         return
     end
 end)
+
+umg.on("@tick", scheduling.skip(300, function()
+    local run = getRun()
+    if not run then return end
+    umg.call("dsh.tt:trophyTick", run)
+end))
 
 umg.on("dsh.tt:pulsed", function(run)
     for i, v in pairs(trophiesByTrigger.PULSE) do
@@ -82,3 +94,12 @@ umg.on("dsh.tt:leveled", function(run)
     end
 end)
 
+umg.on("dsh.tt:trophyTick", function(run)
+    for i, v in pairs(trophiesByTrigger.TROPHY_TICK) do
+        if not v:isUnlocked() then
+            if v:tryUnlock(run, "TROPHY_TICK") then
+                server.broadcast("dsh.tt:trophyUnlocked", v.id)
+            end
+        end
+    end
+end)
