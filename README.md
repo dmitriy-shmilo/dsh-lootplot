@@ -8,6 +8,17 @@ A collection of small mods for the Lootplot game.
 
 A mod I've made as an exercise with Lootplot modding API. Adds several new slots, a couple new foods to spawn those slots, and an assortment of items.
 
+## Trophy Territory ##
+
+![Screenshot0](dsh.tt/assets/images/dsh_tt_screenshot0.png)
+![Screenshot1](dsh.tt/assets/images/dsh_tt_screenshot1.png)
+![Screenshot2](dsh.tt/assets/images/dsh_tt_screenshot2.png)
+![Screenshot3](dsh.tt/assets/images/dsh_tt_screenshot3.png)
+![Screenshot4](dsh.tt/assets/images/dsh_tt_screenshot4.png)
+
+Adds in-game trophy/achievement tracking, which the community came up with. Adds in-game popup to indicate trophy unlocks. Adds items, which are unlocked by some trophies. Adds a separate level, which shows all trophies and their status.
+
+
 ## DSH Debug ##
 
 A devtools mod, which adds a couple of commands to spawn items and slots in a more convenient manner:
