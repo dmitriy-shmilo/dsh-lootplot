@@ -1,0 +1,15 @@
+{
+	"type": "addon",
+	"name": "DSH Trophy Territory",
+	"description": "Adds user-suggested achivements and unlockables.",
+	"author": "Dmitriy Shmilo",
+	"source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
+	"version": 0,
+	"uses": [
+		"chat",
+		"localization",
+		"lootplot",
+		"lootplot.rarities",
+		"lootplot.worldgen"
+	]
+}
