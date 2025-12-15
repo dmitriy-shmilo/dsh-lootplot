@@ -1,3 +1,5 @@
+local interp = localization.newInterpolator
+
 local trophies = {
     names = {},
     definitions = {}
@@ -34,16 +36,34 @@ local function emptyProgressDescription(selfTrophy)
     return ""
 end
 
+local function valueOrResult(maybeCallable, selfTrophy)
+    if not maybeCallable then return "" end
+    if objects.isCallable(maybeCallable) then
+        return maybeCallable(selfTrophy) or ""
+    end
+    return maybeCallable
+end
+
+local authorPrefix = interp("{lootplot:BORING_COLOR}Author: %{author}{/lootplot:BORING_COLOR}")
 local function fullDescription(selfTrophy)
-    local description = selfTrophy.description
-    if objects.isCallable(description) then
-        description = selfTrophy:description()
+    local description = valueOrResult(selfTrophy.description, selfTrophy)
+
+    local rewardDescription = valueOrResult(selfTrophy.rewardDescription, selfTrophy)
+    if #rewardDescription > 0 then
+        description = description .. "\n" .. rewardDescription
     end
-    local progressDescription = selfTrophy.progressDescription
-    if objects.isCallable(progressDescription) then
-        progressDescription = selfTrophy:progressDescription()
+
+    local progressDescription = valueOrResult(selfTrophy.progressDescription, selfTrophy)
+    if #progressDescription > 0 then
+        description = description .. "\n" .. progressDescription
     end
-    return description .. "\n" .. progressDescription
+
+    if selfTrophy.author and #selfTrophy.author > 0 then
+        local author = authorPrefix(selfTrophy)
+        description = description .. "\n" .. author
+    end
+
+    return description
 end
 
 local defaultTriggers = {

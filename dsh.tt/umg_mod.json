@@ -6,10 +6,12 @@
 	"source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
 	"version": 0,
 	"uses": [
+		"dsh-lib",
 		"chat",
 		"scheduling",
 		"localization",
 		"lootplot",
+		"lootplot.targets",
 		"lootplot.rarities",
 		"lootplot.worldgen"
 	]
