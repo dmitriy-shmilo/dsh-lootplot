@@ -11,7 +11,6 @@ local function getRun()
     if run then return run end
     run = lp.singleplayer.getRun()
     if not run then
-        umg.log.warn("DSH.TT - Can't find the singleplayer run.")
         return nil
     end
     return run
@@ -44,16 +43,19 @@ umg.on("lootplot:entityActivated", function(ent)
 
     if ent:type() == "lootplot.s0:pulse_button_slot" then
         umg.call("dsh.tt:pulsed", run)
+        trophies.trackingStarted = true
         return
     end
 
     if ent:type() == "lootplot.s0:next_level_button_slot" then
         umg.call("dsh.tt:leveled", run)
+        trophies.trackingStarted = true
         return
     end
 
     if ent:type() == "lootplot.s0:reroll_button_slot" then
         umg.call("dsh.tt:rerolled", run)
+        trophies.trackingStarted = true
         return
     end
 end)
@@ -61,6 +63,7 @@ end)
 umg.on("@tick", scheduling.skip(300, function()
     local run = getRun()
     if not run then return end
+    trophies.trackingStarted = true
     umg.call("dsh.tt:trophyTick", run)
 end))
 
@@ -103,3 +106,12 @@ umg.on("dsh.tt:trophyTick", function(run)
         end
     end
 end)
+
+trophies.trophiesEnabled = function()
+    local run = getRun()
+    if not run then return false end
+    if run.starterItem == "lootplot.s0:compendium_cat" then return false end
+    if run.starterItem == "dsh.tt:trophy_ball" then return false end
+
+    return trophies.trackingStarted
+end

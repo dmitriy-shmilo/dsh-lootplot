@@ -7,6 +7,7 @@ meta.defineStat(MONEY_EARNED_STAT, 0)
 
 if server then
     umg.on("lootplot:moneyChanged", function(_, delta)
+    	if not trophies.trophiesEnabled() then return end
         if delta and delta > 0 then
             local m = meta.getStat(MONEY_EARNED_STAT)
             meta.setStat(MONEY_EARNED_STAT, m + delta)

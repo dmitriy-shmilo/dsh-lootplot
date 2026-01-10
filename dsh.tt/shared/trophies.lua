@@ -2,7 +2,9 @@ local interp = localization.newInterpolator
 
 local trophies = {
     names = {},
-    definitions = {}
+    definitions = {},
+    trackingStarted = false,
+    trophiesEnabled = function() return false end
 }
 
 umg.defineEvent("dsh.tt:trophyDefined")
