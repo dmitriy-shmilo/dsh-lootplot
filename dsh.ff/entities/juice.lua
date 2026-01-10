@@ -1,4 +1,5 @@
 local loc = localization.localize
+local lib = require("shared.lib")
 
 local function propertyShuffler(getter, setter, includeSlots)
     return function(selfEnt)

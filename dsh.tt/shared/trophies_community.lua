@@ -1,4 +1,5 @@
 local trophies = require("shared.trophies")
+local lib = require("shared.lib")
 local loc = localization.localize
 local meta = lp.metaprogression
 

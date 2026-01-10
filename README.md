@@ -34,7 +34,7 @@ A devtools mod, which adds a couple of commands to spawn items and slots in a mo
 ### Installation ###
 
 1. Download this repository.
-2. Copy any mod folder you'd like to `%APPDATA%/lootplot/mods`.
-3. Copy the `dsh.lib` to `%APPDATA%/lootplot/mods`. 
+2. Open a folder, for the desired mod.
+3. Run `install.bat` from within the folder.
 
-Or simply run `install.bat`, which will copy all mods.
+Or run `install-all.bat` from the root folder if you'd like to install all available mods.

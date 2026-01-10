@@ -1,4 +1,5 @@
 local loc = localization.localize
+local lib = require("shared.lib")
 
 lp.defineItem("dsh.vv:record_plain", {
     name = loc("Plain Record"),

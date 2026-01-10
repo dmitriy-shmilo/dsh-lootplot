@@ -1,5 +1,6 @@
 local loc = localization.localize
 local interp = localization.newInterpolator
+local lib = require("shared.lib")
 
 local BAR_DESC = interp("After {lootplot:INFO_COLOR}%{count} activations{/lootplot:INFO_COLOR}, spawns a %{spawnTarget}.")
 
@@ -88,7 +89,7 @@ lp.defineItem("dsh.vv:bar_cursed", {
     end,
 
     onDraw = function(ent)
-        lib.c.drawDelayItemNumber(ent, BAR_ACT_CURSED)
+        lib.drawDelayItemNumber(ent, BAR_ACT_CURSED)
     end
 })
 
@@ -126,7 +127,7 @@ lp.defineItem("dsh.vv:bar_mystery", {
     end,
 
     onDraw = function(ent)
-        lib.c.drawDelayItemNumber(ent, BAR_ACT_MYSTERY)
+        lib.drawDelayItemNumber(ent, BAR_ACT_MYSTERY)
     end
 })
 
@@ -157,7 +158,7 @@ lp.defineItem("dsh.vv:bar_orichalcum", {
     end,
 
     onDraw = function(ent)
-        lib.c.drawDelayItemNumber(ent, BAR_ACT_REVERSAL)
+        lib.drawDelayItemNumber(ent, BAR_ACT_REVERSAL)
     end
 })
 
@@ -188,6 +189,6 @@ lp.defineItem("dsh.vv:bar_copper", {
     end,
 
     onDraw = function(ent)
-        lib.c.drawDelayItemNumber(ent, BAR_ACT_TAX)
+        lib.drawDelayItemNumber(ent, BAR_ACT_TAX)
     end
 })

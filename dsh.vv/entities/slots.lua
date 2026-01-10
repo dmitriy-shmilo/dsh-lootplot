@@ -1,5 +1,6 @@
 -- see lootplot.s0\entities\slots\shop_reroll_slots.lua
 local loc = localization.localize
+local lib = require("shared.lib")
 
 local _itemGeneratorsByRarity = {}
 local _defaultItemGenerator

@@ -31,6 +31,25 @@ local lib = {
     TAGGED_ENTITIES = {
     },
 
+    STARTING_ITEM_TYPES = {
+        ["lootplot.s0:one_ball"] = true,
+        ["lootplot.s0:six_ball"] = true,
+        ["lootplot.s0:five_ball"] = true,
+        ["lootplot.s0:G_ball"] = true,
+        ["lootplot.s0:S_ball"] = true,
+        ["lootplot.s0:eight_ball"] = true,
+        ["lootplot.s0:seven_ball"] = true,
+        ["lootplot.s0:blank_ball"] = true,
+        ["lootplot.s0:azazel_ball"] = true,
+        ["lootplot.s0:nine_ball"] = true,
+        ["lootplot.s0:L_ball"] = true,
+        ["lootplot.s0:rainbow_ball"] = true,
+        ["lootplot.s0:eden_ball"] = true,
+        ["lootplot.s0:negative_one_ball"] = true,
+        ["lootplot.s0:bowling_ball"] = true,
+        ["lootplot.s0:basketball"] = true
+    },
+
     REROLLABLE_RARITIES = {
     },
 
@@ -144,6 +163,10 @@ lib.shuffledRandom = function (t)
         s[i], s[j] = s[j], s[i]
     end
     return s
+end
+
+if client then
+    require("client.lib")(lib)
 end
 
 return lib

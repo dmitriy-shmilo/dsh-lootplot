@@ -62,7 +62,7 @@ local SPIRAL_STEPS = 45
 commandLookup["si"] = {
     adminLevel = 120,
     arguments = {
-        {name = "entityType", type = "string"},
+        { name = "entityType", type = "string" },
     },
     handler = function(clientId, etype)
         if not server then

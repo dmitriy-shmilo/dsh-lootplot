@@ -1,12 +1,8 @@
 {
-    "type": "addon",
+    "type": "addon-lib",
     "name": "DSH Library",
     "description": "Shared and utility components, which are used by other mods. Mostly stuff stolen from the lootplot.s0 sources.",
     "author": "Dmitriy Shmilo",
     "source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
-    "version": 0,
-    "uses": [
-        "objects",
-        "lootplot.rarities"
-    ]
+    "version": 0
 }

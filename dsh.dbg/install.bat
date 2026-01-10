@@ -1,0 +1,1 @@
+xcopy /r /y /e .\ %APPDATA%\lootplot\mods\dsh.dbg\

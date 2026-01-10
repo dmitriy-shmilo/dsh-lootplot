@@ -1,4 +1,5 @@
 local loc = localization.localize
+local lib = require("shared.lib")
 
 lp.defineItem("dsh.vv:diamond_ornament", {
     name = loc("Diamond Ornament"),
