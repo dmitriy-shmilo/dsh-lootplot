@@ -7,6 +7,14 @@ local trophies = {
     trophiesEnabled = function() return false end
 }
 
+umg.defineEvent("dsh.tt:started")
+umg.defineEvent("dsh.tt:pulsed")
+umg.defineEvent("dsh.tt:leveled")
+umg.defineEvent("dsh.tt:rerolled")
+umg.defineEvent("dsh.tt:trophyTick")
+umg.defineEvent("dsh.tt:won")
+umg.defineEvent("dsh.tt:lost")
+
 umg.defineEvent("dsh.tt:trophyDefined")
 umg.definePacket("dsh.tt:trophyUnlocked", {
     typelist = { "string" }
@@ -141,6 +149,65 @@ function trophies.defineTrophy(id, def)
     trophies.definitions[id] = def
     table.insert(trophies.names, id)
     umg.call("dsh.tt:trophyDefined", def)
+end
+
+do -- trophy data
+    local trophyData
+    local TROPHY_DATA_FILE = "trophy_data.json"
+    local function saveTrophyData()
+        local fsobj = server.getSaveFilesystem()
+        local data = json.encode(trophyData)
+        fsobj:write(TROPHY_DATA_FILE, data)
+    end
+
+    function trophies.getTrophyData(id, defaultData)
+        if not server then return nil end
+        if not trophyData then
+            trophies.loadTrophyData()
+        end
+
+        if not trophyData[id] then
+            trophyData[id] = defaultData
+        end
+
+        return trophyData[id]
+    end
+
+    function trophies.setTrophyData(id, data)
+        if not server then return end
+        if not trophyData then
+            trophies.loadTrophyData()
+        end
+
+        if not trophyData[id] then
+            trophyData[id] = data
+        end
+
+        saveTrophyData()
+    end
+
+    function trophies.resetTrophyData()
+        if not server then return end
+        trophyData = {}
+        saveTrophyData()
+    end
+
+    function trophies.loadTrophyData()
+        if not server then return end
+        local fsobj = server.getSaveFilesystem()
+        local data = fsobj:read(TROPHY_DATA_FILE)
+        if not data then
+            umg.log.error("DSH.TT - Unable to load trophy data. Will reset instead.")
+            trophies.resetTrophyData()
+            return
+        end
+
+        trophyData = json.decode(data)
+        if not trophyData then
+            umg.log.error("DSH.TT - Unable to decode trophy data. Will reset instead.")
+            trophies.resetTrophyData()
+        end
+    end
 end
 
 umg.expose("trophies", trophies)
