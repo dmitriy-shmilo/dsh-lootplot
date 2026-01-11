@@ -127,22 +127,17 @@ do
     local CURSES_DESTROYED_REQUIRED = 5
     local data = { cursesDestroyed = 0 }
 
-    umg.on("lootplot:entityDestroyed", function(ent)
-        if not ent.isCurse then return end
-        if data.cursesDestroyed >= CURSES_DESTROYED_REQUIRED then return end
+    if server then
+        umg.on("lootplot:entityDestroyed", function(ent)
+            if not ent.isCurse then return end
+            if data.cursesDestroyed >= CURSES_DESTROYED_REQUIRED then return end
 
-        local t = type(ent.isInvincible)
-        if t == "function" and ent:isInvincible() then
-            return
-        elseif t == "boolean" and ent.isInvincible then
-            return
-        end
-        if not ent.lives or ent.lives == 0 then
+            if lp.isInvincible(ent) then return end
             data = trophies.getTrophyData(ID, data)
             data.cursesDestroyed = data.cursesDestroyed + 1
             trophies.setTrophyData(ID, data)
-        end
-    end)
+        end)
+    end
 
     meta.defineFlag(ID)
     trophies.defineTrophy(ID, {
@@ -249,7 +244,6 @@ do
             if trigger ~= "SPAWN" then return end
             local type = ent:type()
             if type ~= "lootplot.s0:stone_hand" then return end
-            print("Stone hand spawned")
             data.isInvalidated = false
             trophies.setTrophyData(ID, data)
         end)
@@ -257,11 +251,10 @@ do
         umg.on("lootplot:entityActivated", function(ent)
             local type = ent:type()
             if type ~= "lootplot.s0:stone_hand" then return end
+            data = trophies.getTrophyData(ID, data)
             if data.isInvalidated then return end
-            print("Stone activate")
             data = trophies.getTrophyData(ID, data)
             if ent.totalActivationCount >= ent.stoneHand_activations then
-                print("Stone hand ran out")
                 data.isInvalidated = true
                 trophies.setTrophyData(ID, data)
             end
