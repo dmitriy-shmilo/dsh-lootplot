@@ -180,4 +180,9 @@ if client then
     require("client.lib")(lib)
 end
 
+if server then
+    
+end
+lib.hooks = require("shared.hooks")
+
 return lib
