@@ -23,7 +23,8 @@ local lib = {
 
         -- custom tags
         RECORD = "dsh.lib:record",
-        WEAPON = "dsh.lib:weapon"
+        WEAPON = "dsh.lib:weapon",
+        SHIELD = "dsh.lib:shield"
     },
 
     -- vanilla entities, which need to be treated as if they have certain tags
@@ -163,6 +164,16 @@ lib.shuffledRandom = function (t)
         s[i], s[j] = s[j], s[i]
     end
     return s
+end
+
+lib.plotForEachItem = function(plot, predicate)
+    for y = 0, plot.height - 1 do
+        for x = plot.width - 1, 0, -1 do
+            local ppos = plot:getPPos(x, y)
+            local item = lp.posToItem(ppos)
+            if item and not predicate(item, ppos, plot) then return end
+        end
+    end
 end
 
 if client then
