@@ -20,6 +20,12 @@ Adds in-game trophy/achievement tracking, which the community came up with. Adds
 
 Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/README.md)
 
+## Quirky Quality (`dsh.qq`) ##
+
+![Screenshot0](dsh.qq/assets/images/dsh_qq_screenshot0.png)
+![Screenshot1](dsh.qq/assets/images/dsh_qq_screenshot1.png)
+
+Adds some quality of life things into the game. See the mod's [README.md](/dsh.qq/README.md) for more details.
 
 ## DSH Debug (`dsh.dbg`) ##
 
