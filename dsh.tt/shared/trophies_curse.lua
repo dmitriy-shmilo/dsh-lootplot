@@ -9,17 +9,10 @@ meta.defineStat(CURSES_DESTROYED_STAT, 0)
 if server then
     umg.on("lootplot:entityDestroyed", function(ent)
         if not ent.isCurse then return end
+        if lp.isInvincible(ent) then return end
 
-        local t = type(ent.isInvincible)
-        if t == "function" and ent:isInvincible() then
-            return
-        elseif t == "boolean" and ent.isInvincible then
-            return
-        end
-        if not ent.lives or ent.lives == 0 then
-            local stat = meta.getStat(CURSES_DESTROYED_STAT)
-            meta.setStat(CURSES_DESTROYED_STAT, stat + 1)
-        end
+        local stat = meta.getStat(CURSES_DESTROYED_STAT)
+        meta.setStat(CURSES_DESTROYED_STAT, stat + 1)
     end)
 end
 
