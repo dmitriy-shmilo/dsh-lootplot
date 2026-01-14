@@ -11,7 +11,7 @@ Displays padlock icons on locked reroll slots. Will display a padlock even if th
 
 ## Item Search ##
 
-![Screenshot0](assets/images/dsh_qq_screenshot1.png)
+![Screenshot1](assets/images/dsh_qq_screenshot1.png)
 
 Allows to search items by name or description. Usage:
 

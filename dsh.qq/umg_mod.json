@@ -9,6 +9,7 @@
 		"chat",
 		"localization",
 		"lootplot",
-		"lootplot.rarities"
+		"lootplot.rarities",
+		"input"
 	]
 }

@@ -38,6 +38,7 @@ A devtools mod, which adds a couple of commands to spawn items and slots in a mo
 
 - https://jamiebrownhill.itch.io/solaria-food-drink-icon
 - https://mtk.itch.io/grenades-16x16
+- https://crusenho.itch.io/icons-essential-pack-free-icons
 - The rest of the graphical assets are recolored or otherwise adjusted assets from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master/lootplot.s0).
 - Some code snippets are borrowed from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master).
 
