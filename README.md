@@ -23,7 +23,8 @@ Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/READM
 ## Quirky Quality (`dsh.qq`) ##
 
 ![Screenshot0](dsh.qq/assets/images/dsh_qq_screenshot0.png)
-![Screenshot1](dsh.qq/assets/images/dsh_qq_screenshot1.png)
+![Screenshot1](dsh.qq/assets/images/dsh_qq_screenshot2.png)
+![Screenshot1](dsh.qq/assets/images/dsh_qq_screenshot3.png)
 
 Adds some quality of life things into the game. See the mod's [README.md](/dsh.qq/README.md) for more details.
 
@@ -36,11 +37,15 @@ A devtools mod, which adds a couple of commands to spawn items and slots in a mo
 
 ## Credits ##
 
-- https://jamiebrownhill.itch.io/solaria-food-drink-icon
-- https://mtk.itch.io/grenades-16x16
-- https://crusenho.itch.io/icons-essential-pack-free-icons
-- The rest of the graphical assets are recolored or otherwise adjusted assets from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master/lootplot.s0).
-- Some code snippets are borrowed from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master).
+- Art:
+	- https://jamiebrownhill.itch.io/solaria-food-drink-icon
+	- https://mtk.itch.io/grenades-16x16
+	- https://crusenho.itch.io/icons-essential-pack-free-icons
+	- The rest of the graphical assets are recolored or otherwise adjusted assets from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master/lootplot.s0).
+- Fonts:
+	- https://datagoblin.itch.io/monogram
+- Code:
+	- Some code snippets are borrowed from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master).
 
 
 ### Installation ###

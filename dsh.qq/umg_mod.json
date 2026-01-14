@@ -10,6 +10,7 @@
 		"localization",
 		"lootplot",
 		"lootplot.rarities",
-		"input"
+		"input",
+		"layout"
 	]
 }

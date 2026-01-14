@@ -1,4 +1,5 @@
 local globalScale = require("client.global_scale")
+local DescriptionBox = require("client.DescriptionBox")
 local query = require("shared.query")
 
 local toolbarState = {
@@ -9,6 +10,13 @@ local toolbarState = {
         width = 16,
         height = 16,
         isActive = false,
+        getTooltip = function ()
+            if query.isSearchActive() then
+                return "Clear search."
+            else
+                return "Search items by name or description."
+            end
+        end
     },
     triggerFilters = {
         "PULSE",
@@ -25,9 +33,17 @@ local toolbarState = {
         y = 0,
         width = 16,
         height = 16,
-        isActive = false
+        isActive = false,
+        getTooltip = function(self)
+            if self.isActive then
+                return "Clear trigger filtering."
+            else
+                return "Filter items by triggers."
+            end
+        end
     },
-    triggerFilterButtons = {}
+    triggerFilterButtons = {},
+    tooltip = nil
 }
 
 for i, t in ipairs(toolbarState.triggerFilters) do
@@ -42,7 +58,8 @@ for i, t in ipairs(toolbarState.triggerFilters) do
         click = function (self)
             self.isActive = not self.isActive
             query.setTriggerFilter(self.trigger, self.isActive)
-        end
+        end,
+        getTooltip = function() return t end
     }
     table.insert(toolbarState.triggerFilterButtons, button)
 end
@@ -59,6 +76,23 @@ local function tryClick(button, x, y)
     if not isClicked(button, x, y) then return false end
     button:click()
     return true
+end
+
+local function isHowering(item, x, y)
+    return x > item.x - item.width / 2
+    and x < item.x + item.width / 2
+    and y > item.y - item.height / 2
+    and y < item.y + item.height / 2
+end
+
+local function getHoweredItem(x, y)
+    if isHowering(toolbarState.searchButton, x, y) then return toolbarState.searchButton end
+    if isHowering(toolbarState.triggerFilterGroupButton, x, y) then return toolbarState.triggerFilterGroupButton end
+
+    for _, b in pairs(toolbarState.triggerFilterButtons) do
+        if isHowering(b, x, y) then return b end
+    end
+    return nil
 end
 
 function toolbarState.searchButton:click()
@@ -82,12 +116,21 @@ function toolbarState.triggerFilterGroupButton:click()
     end
 end
 
-umg.on("@update", scheduling.skip(300, function()
+umg.on("@update", function()
+    local howered = getHoweredItem(input.getPointerPosition())
+    if howered and howered.getTooltip then
+        toolbarState.tooltip = howered:getTooltip()
+        toolbarState.descriptionBox:clearContents()
+        toolbarState.descriptionBox:addRichText(toolbarState.tooltip)
+    else
+        toolbarState.tooltip = nil
+    end
+
     if toolbarState.isActive then return end
     if lp.singleplayer.getRun() then
         toolbarState.isActive = true
     end
-end))
+end)
 
 umg.on("@mousepressed", function(x, y, button, istouch, presses)
     tryClick(toolbarState.searchButton, x, y)
@@ -148,6 +191,20 @@ umg.on("@draw", 1, function()
                 scale)
         end
     end
+
+    if toolbarState.tooltip then
+        local mx, my = input.getPointerPosition()
+        local idealDescW = screenWidth / 3
+        local bestDescW, descH = toolbarState.descriptionBox:getBestFitDimensions(idealDescW)
+        local descW = math.min(idealDescW, bestDescW)
+        local descRegion = layout.Region(
+            math.max(mx - 16 - descW, 16),
+            math.min(my + 16, screenHeight - descH - 16),
+            descW,
+            descH
+        )
+        toolbarState.descriptionBox:draw(descRegion:get())
+    end
 end)
 
 local BUTTON_MARGIN = 16
@@ -174,7 +231,9 @@ local function updatePositions(w, h)
     end
 end
 
+
 umg.on("@load", function()
+    toolbarState.descriptionBox = DescriptionBox()
     updatePositions(love.graphics.getDimensions())
 end)
 
