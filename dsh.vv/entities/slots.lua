@@ -172,7 +172,7 @@ lp.defineSlot("dsh.vv:reroll_grubby_slot", {
     onPostActivate = function(ent)
         local itemEnt = lp.slotToItem(ent)
         if itemEnt then
-            itemEnt.grubMoneyCap = true
+            itemEnt.grubMoneyCap = 20
             sync.syncComponent(itemEnt, "grubMoneyCap")
         end
     end,
