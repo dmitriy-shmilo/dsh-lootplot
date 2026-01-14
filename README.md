@@ -4,17 +4,17 @@ A collection of small mods for the Lootplot game.
 
 ## Vanilla Variety (`dsh.vv`) ##
 
-![Showcase](dsh.vv/assets/images/dsh_vv_showcase.png)
+![Showcase](images/dsh_vv_showcase.png)
 
 A mod I've made as an exercise with Lootplot modding API. Adds several new slots, a couple new foods to spawn those slots, and an assortment of items.
 
 ## Trophy Territory (`dsh.tt`) ##
 
-![Screenshot0](dsh.tt/assets/images/dsh_tt_screenshot0.png)
-![Screenshot1](dsh.tt/assets/images/dsh_tt_screenshot1.png)
-![Screenshot2](dsh.tt/assets/images/dsh_tt_screenshot2.png)
-![Screenshot3](dsh.tt/assets/images/dsh_tt_screenshot3.png)
-![Screenshot4](dsh.tt/assets/images/dsh_tt_screenshot4.png)
+![Screenshot0](images/dsh_tt_screenshot0.png)
+![Screenshot1](images/dsh_tt_screenshot1.png)
+![Screenshot2](images/dsh_tt_screenshot2.png)
+![Screenshot3](images/dsh_tt_screenshot3.png)
+![Screenshot4](images/dsh_tt_screenshot4.png)
 
 Adds in-game trophy/achievement tracking, which the community came up with. Adds in-game popup to indicate trophy unlocks. Adds items, which are unlocked by some trophies. Adds a separate level, which shows all trophies and their status.
 
@@ -22,9 +22,9 @@ Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/READM
 
 ## Quirky Quality (`dsh.qq`) ##
 
-![Screenshot0](dsh.qq/assets/images/dsh_qq_screenshot0.png)
-![Screenshot1](dsh.qq/assets/images/dsh_qq_screenshot2.png)
-![Screenshot1](dsh.qq/assets/images/dsh_qq_screenshot3.png)
+![Screenshot0](images/dsh_qq_screenshot0.png)
+![Screenshot1](images/dsh_qq_screenshot2.png)
+![Screenshot1](images/dsh_qq_screenshot3.png)
 
 Adds some quality of life things into the game. See the mod's [README.md](/dsh.qq/README.md) for more details.
 

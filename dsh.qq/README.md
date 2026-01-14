@@ -4,14 +4,14 @@ Adds some quality of life improvements into the game.
 
 ## Reroll Slots ##
 
-![Screenshot0](assets/images/dsh_qq_screenshot0.png)
+![Screenshot0](../images/dsh_qq_screenshot0.png)
 
 Displays padlock icons on locked reroll slots. Will display a padlock even if the slot is empty, which is useful to make sure that your doomed reroll slots aren't wasting away on rerolls.
 
 
 ## Item Search ##
 
-![Screenshot1](assets/images/dsh_qq_screenshot1.png)
+![Screenshot1](../images/dsh_qq_screenshot1.png)
 
 Allows to search items by name or description. Usage:
 
@@ -22,8 +22,8 @@ Allows to search items by name or description. Usage:
 
 ## Trigger Filter ##
 
-![Screenshot3](assets/images/dsh_qq_screenshot3.png)
-![Screenshot4](assets/images/dsh_qq_screenshot4.png)
+![Screenshot3](../images/dsh_qq_screenshot3.png)
+![Screenshot4](../images/dsh_qq_screenshot4.png)
 
 Allows filtering items by their triggers. Usage:
 
