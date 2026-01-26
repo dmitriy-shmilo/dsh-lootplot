@@ -66,55 +66,69 @@ local overlays = {
 		end
 	},
 	price = {
-		minPrice = -99,
-		maxPrice = 99,
-		lowestPrice = 99,
-		highestPrice = -99,
+		minValue = -50,
+		maxValue = 50,
+		lowestValue = 50,
+		highestValue = -50,
 		tmpColor = { r = 1, g = 1, b = 1, a = 1},
 		zeroColor = {
 			r = 180 / 255,
 			g = 180 / 255,
-			b = 180 / 255
+			b = 180 / 255,
+			a = 0.3
 		},
-		minColor = {
+		minNegativeColor = {
 			r = 177 / 255,
 			g = 33 / 255,
 			b = 73 / 255
 		},
-		maxColor = {
+		maxNegativeColor = {
+			r = 251 / 255,
+			g = 137 / 255,
+			b = 30 / 255
+		},
+		minPositiveColor = {
+			r = 255 / 255,
+			g = 248 / 255,
+			b = 27 / 255
+		},
+		maxPositiveColor = {
 			r = 6 / 255,
 			g = 239 / 255,
 			b = 94 / 255
 		},
 		onActivate = function (self)
-			self.lowestPrice = self.maxPrice
-			self.highestPrice = self.minPrice
+			self.lowestValue = self.maxValue
+			self.highestValue = self.minValue
+
 			local run = lp.singleplayer.getRun()
 			if not run then return end
 			local plot = run:getPlot()
 			lib.plotForEachItem(plot, function(item)
-				local price = item.price or 0
-				if price > self.highestPrice then
-					self.highestPrice = math.min(self.maxPrice, price)
+				local value = item.price or 0
+				if value > self.highestValue then
+					self.highestValue = math.min(self.maxValue, value)
 				end
 
-				if price < self.lowestPrice then
-					self.lowestPrice = math.max(self.minPrice, price)
+				if value < self.lowestValue then
+					self.lowestValue = math.max(self.minValue, value)
 				end
-				return self.highestPrice < self.maxPrice or self.lowestPrice > self.minPrice
+				return self.highestValue < self.maxValue or self.lowestValue > self.minValue
 			end)
 		end,
 		onItemDraw = function (self, selfEnt, x, y, rot, sx, sy)
-			local price = selfEnt.price or 0
+			local value = selfEnt.price or 0
 			local opacity = selfEnt.opacity or 1
 			local top, left = y - SLOT_SIZE / 2, x - SLOT_SIZE / 2
-			local r, g, b, a, value
-			if price <= 0 then
-				value = normalize(price, self.lowestPrice, 0)
-				r, g, b, a = lerpColor(self.minColor, self.zeroColor, value)
+			local r, g, b, a
+			if value < 0 then
+				value = normalize(value, self.lowestValue, 0)
+				r, g, b, a = lerpColor(self.minNegativeColor, self.maxNegativeColor, value)
+			elseif value > 0 then
+				value = normalize(value, 0, self.highestValue)
+				r, g, b, a = lerpColor(self.minPositiveColor, self.maxPositiveColor, value)
 			else
-				value = normalize(price, 0, self.highestPrice)
-				r, g, b, a = lerpColor(self.zeroColor, self.maxColor, value)
+				r, g, b, a = self.zeroColor.r, self.zeroColor.g, self.zeroColor.b, self.zeroColor.a
 			end
 			self.tmpColor.r = r
 			self.tmpColor.g = g
@@ -122,11 +136,88 @@ local overlays = {
 			self.tmpColor.a = a
 			drawOverlaySquare(left, top, opacity, self.tmpColor)
 
-			local text = "$" .. tostring(price)
+			local text = "$" .. tostring(selfEnt.price or 0)
 			love.graphics.setColor(r, g, b, a * opacity)
 			drawCenteredText(left, top, SLOT_SIZE, SLOT_SIZE, text)
 		end
-	}
+	},
+	income = {
+		minValue = -50,
+		maxValue = 50,
+		lowestValue = 50,
+		highestValue = -50,
+		tmpColor = { r = 1, g = 1, b = 1, a = 1},
+		zeroColor = {
+			r = 180 / 255,
+			g = 180 / 255,
+			b = 180 / 255,
+			a = 0.3
+		},
+		minNegativeColor = {
+			r = 177 / 255,
+			g = 33 / 255,
+			b = 73 / 255
+		},
+		maxNegativeColor = {
+			r = 251 / 255,
+			g = 137 / 255,
+			b = 30 / 255
+		},
+		minPositiveColor = {
+			r = 255 / 255,
+			g = 248 / 255,
+			b = 27 / 255
+		},
+		maxPositiveColor = {
+			r = 6 / 255,
+			g = 239 / 255,
+			b = 94 / 255
+		},
+		onActivate = function (self)
+			self.lowestValue = self.maxValue
+			self.highestValue = self.minValue
+
+			local run = lp.singleplayer.getRun()
+			if not run then return end
+			local plot = run:getPlot()
+			lib.plotForEachItem(plot, function(item)
+				local value = item.moneyGenerated or 0
+				if value > self.highestValue then
+					self.highestValue = math.min(self.maxValue, value)
+				end
+
+				if value < self.lowestValue then
+					self.lowestValue = math.max(self.minValue, value)
+				end
+				return self.highestValue < self.maxValue or self.lowestValue > self.minValue
+			end)
+		end,
+		onItemDraw = function (self, selfEnt, x, y, rot, sx, sy)
+			local factualValue = umg.ask("dsh.qq:factualIncome", selfEnt)
+			local value = factualValue
+			local opacity = selfEnt.opacity or 1
+			local top, left = y - SLOT_SIZE / 2, x - SLOT_SIZE / 2
+			local r, g, b, a
+			if value < 0 then
+				value = normalize(value, self.lowestValue, 0)
+				r, g, b, a = lerpColor(self.minNegativeColor, self.maxNegativeColor, value)
+			elseif value > 0 then
+				value = normalize(value, 0, self.highestValue)
+				r, g, b, a = lerpColor(self.minPositiveColor, self.maxPositiveColor, value)
+			else
+				r, g, b, a = self.zeroColor.r, self.zeroColor.g, self.zeroColor.b, self.zeroColor.a
+			end
+			self.tmpColor.r = r
+			self.tmpColor.g = g
+			self.tmpColor.b = b
+			self.tmpColor.a = a
+			drawOverlaySquare(left, top, opacity, self.tmpColor)
+
+			local text = "$" .. tostring(factualValue)
+			love.graphics.setColor(r, g, b, a * opacity)
+			drawCenteredText(left, top, SLOT_SIZE, SLOT_SIZE, text)
+		end
+	},
 }
 
 local overlay = {
@@ -148,10 +239,29 @@ end
 
 umg.on("rendering:drawEntity", RENDER_AFTER_ENTITY_ORDER, function (selfEnt, x, y, rot, sx, sy)
 	local activeOverlay = overlay.activeOverlay
+	if not selfEnt.originalOnDraw then
+		selfEnt.originalOnDraw = selfEnt.onDraw
+		selfEnt.onDraw = function()end
+	end
+
 	if not activeOverlay then return end
 	if lp.isItemEntity(selfEnt) and activeOverlay.onItemDraw then
 		activeOverlay:onItemDraw(selfEnt, x, y, rot, sx, sy)
 	end
 end)
+
+umg.on("rendering:drawEntity", RENDER_AFTER_ENTITY_ORDER - 1, function (selfEnt, x, y, rot, sx, sy)
+	if selfEnt.originalOnDraw then
+		selfEnt.originalOnDraw(selfEnt, x, y, rot, sx, sy)
+	end
+end)
+
+umg.defineQuestion("dsh.qq:factualIncome", reducers.ADD)
+
+umg.answer("dsh.qq:factualIncome", function(ent)
+	return ent.moneyGenerated or 0
+end)
+
+require("client.factual_income")()
 
 return overlay

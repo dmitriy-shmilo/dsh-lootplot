@@ -46,11 +46,13 @@ local toolbarState = {
     triggerFilterButtons = {},
     overlays = {
         "rarity",
-        "price"
+        "price",
+        "income"
     },
     overlayTooltips = {
         rarity = "Item Rarity",
-        price = "Item Price"
+        price = "Item Price",
+        income = "Icome per Activation"
     },
     overlayGroupButton = {
         x = 0,
@@ -87,19 +89,23 @@ for i, t in ipairs(toolbarState.triggerFilters) do
     table.insert(toolbarState.triggerFilterButtons, button)
 end
 
-for i, t in ipairs(toolbarState.overlays) do
+for i, o in ipairs(toolbarState.overlays) do
     local button = {
         width = 16,
         height = 16,
         x = 0,
         y = 0,
-        image = "dsh_overlay_" .. t:lower(),
+        image = "dsh_overlay_" .. o:lower(),
         isActive = false,
         click = function (self)
-            self.isActive = not self.isActive
-            overlay.setOverlay(t, self.isActive)
+            local activate = not self.isActive
+            for i, b in ipairs(toolbarState.overlayButtons) do
+                b.isActive = false
+            end
+            self.isActive = activate
+            overlay.setOverlay(o, self.isActive)
         end,
-        getTooltip = function() return toolbarState.overlayTooltips[t] end
+        getTooltip = function() return toolbarState.overlayTooltips[o] end
     }
     table.insert(toolbarState.overlayButtons, button)
 end
