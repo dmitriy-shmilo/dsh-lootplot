@@ -45,10 +45,12 @@ local toolbarState = {
     },
     triggerFilterButtons = {},
     overlays = {
-        "rarity"
+        "rarity",
+        "price"
     },
     overlayTooltips = {
-        rarity = "Item Rarity"
+        rarity = "Item Rarity",
+        price = "Item Price"
     },
     overlayGroupButton = {
         x = 0,
@@ -160,6 +162,7 @@ function toolbarState.overlayGroupButton:click()
             b.isActive = false
         end
     end
+    overlay.setOverlay("", false)
 end
 
 umg.on("@update", function()
