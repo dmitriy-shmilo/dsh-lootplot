@@ -10,6 +10,7 @@ local RICH_TEXT_TYPE = "richtext"
 local SEPARATOR = "---"
 local DRAWABLE_TYPE = "drawable"
 local NEWLINE_TYPE = "\n"
+local defaultFont = love.graphics.newFont("/assets/fonts/monogram-extended.ttf", 32, "mono", 1) or love.graphics.getFont()
 
 ---@alias lootplot.DescriptionBoxFunction fun(x:number,y:number,w:number,h:number)
 ---@class lootplot.singleplayer._DescriptionBoxData
@@ -23,7 +24,7 @@ function DescriptionBox:init()
     ---@private
     self.contents = {} ---@type lootplot.singleplayer._DescriptionBoxData[]
     ---@private
-    self.defaultFont = love.graphics.newFont("/assets/fonts/monogram-extended.ttf", 32, "mono", 1) or love.graphics.getFont()
+    self.defaultFont = defaultFont
     ---@private
     self.borderColor = objects.Color(0.9,0.9,0.9)
 

@@ -1,6 +1,7 @@
 local globalScale = require("client.global_scale")
 local DescriptionBox = require("client.DescriptionBox")
 local query = require("shared.query")
+local overlay = require("client.overlay")
 
 local toolbarState = {
     isActive = false,
@@ -43,6 +44,26 @@ local toolbarState = {
         end
     },
     triggerFilterButtons = {},
+    overlays = {
+        "rarity"
+    },
+    overlayTooltips = {
+        rarity = "Item Rarity"
+    },
+    overlayGroupButton = {
+        x = 0,
+        y = 0,
+        width = 16,
+        height = 16,
+        getTooltip = function(self)
+            if self.isActive then
+                return "Clear current overlay."
+            else
+                return "Item overlays."
+            end
+        end
+    },
+    overlayButtons = {},
     tooltip = nil
 }
 
@@ -64,18 +85,21 @@ for i, t in ipairs(toolbarState.triggerFilters) do
     table.insert(toolbarState.triggerFilterButtons, button)
 end
 
-local function isClicked(button, x, y)
-    return x > button.x - button.width / 2
-    and x < button.x + button.width / 2
-    and y > button.y - button.height / 2
-    and y < button.y + button.height / 2
-end
-
-local function tryClick(button, x, y)
-    if not button.click then return false end
-    if not isClicked(button, x, y) then return false end
-    button:click()
-    return true
+for i, t in ipairs(toolbarState.overlays) do
+    local button = {
+        width = 16,
+        height = 16,
+        x = 0,
+        y = 0,
+        image = "dsh_overlay_" .. t:lower(),
+        isActive = false,
+        click = function (self)
+            self.isActive = not self.isActive
+            overlay.setOverlay(t, self.isActive)
+        end,
+        getTooltip = function() return toolbarState.overlayTooltips[t] end
+    }
+    table.insert(toolbarState.overlayButtons, button)
 end
 
 local function isHowering(item, x, y)
@@ -85,13 +109,26 @@ local function isHowering(item, x, y)
     and y < item.y + item.height / 2
 end
 
+local function tryClick(button, x, y)
+    if not button.click then return false end
+    if not isHowering(button, x, y) then return false end
+    button:click()
+    return true
+end
+
 local function getHoweredItem(x, y)
     if isHowering(toolbarState.searchButton, x, y) then return toolbarState.searchButton end
-    if isHowering(toolbarState.triggerFilterGroupButton, x, y) then return toolbarState.triggerFilterGroupButton end
 
+    if isHowering(toolbarState.triggerFilterGroupButton, x, y) then return toolbarState.triggerFilterGroupButton end
     for _, b in pairs(toolbarState.triggerFilterButtons) do
         if isHowering(b, x, y) then return b end
     end
+
+    if isHowering(toolbarState.overlayGroupButton, x, y) then return toolbarState.overlayGroupButton end
+    for _, b in pairs(toolbarState.overlayButtons) do
+        if isHowering(b, x, y) then return b end
+    end
+
     return nil
 end
 
@@ -116,6 +153,15 @@ function toolbarState.triggerFilterGroupButton:click()
     end
 end
 
+function toolbarState.overlayGroupButton:click()
+    self.isActive = not self.isActive
+    if not self.isActive then
+        for _, b in ipairs(toolbarState.overlayButtons) do
+            b.isActive = false
+        end
+    end
+end
+
 umg.on("@update", function()
     local howered = getHoweredItem(input.getPointerPosition())
     if howered and howered.getTooltip then
@@ -134,9 +180,17 @@ end)
 
 umg.on("@mousepressed", function(x, y, button, istouch, presses)
     tryClick(toolbarState.searchButton, x, y)
+
     tryClick(toolbarState.triggerFilterGroupButton, x, y)
     if toolbarState.triggerFilterGroupButton.isActive then
         for _, b in ipairs(toolbarState.triggerFilterButtons) do
+            tryClick(b, x, y)
+        end
+    end
+
+    tryClick(toolbarState.overlayGroupButton, x, y)
+    if toolbarState.overlayGroupButton.isActive then
+        for _, b in ipairs(toolbarState.overlayButtons) do
             tryClick(b, x, y)
         end
     end
@@ -147,6 +201,7 @@ umg.on("@draw", 1, function()
     local scale = globalScale:get()
     local screenWidth, screenHeight = love.graphics.getDimensions()
     love.graphics.setLineWidth(scale)
+    love.graphics.setColor(1, 1, 1, 1)
 
     if query.isSearchActive() then
         rendering.drawImage(
@@ -192,6 +247,33 @@ umg.on("@draw", 1, function()
         end
     end
 
+    love.graphics.setColor(1, 1, 1, 1)
+    rendering.drawImage(
+        "dsh_overlay",
+        toolbarState.overlayGroupButton.x,
+        toolbarState.overlayGroupButton.y,
+        0,
+        scale,
+        scale)
+
+    if toolbarState.overlayGroupButton.isActive then
+        for i, b in ipairs(toolbarState.overlayButtons) do
+            if b.isActive then
+                love.graphics.setColor(1, 1, 1, 1)
+            else
+                love.graphics.setColor(1, 1, 1, 0.3)
+            end
+
+            rendering.drawImage(
+                b.image,
+                b.x,
+                b.y,
+                0,
+                scale,
+                scale)
+        end
+    end
+
     if toolbarState.tooltip then
         local mx, my = input.getPointerPosition()
         local idealDescW = screenWidth / 3
@@ -205,6 +287,8 @@ umg.on("@draw", 1, function()
         )
         toolbarState.descriptionBox:draw(descRegion:get())
     end
+
+    love.graphics.setColor(1, 1, 1, 1)
 end)
 
 local BUTTON_MARGIN = 16
@@ -229,8 +313,19 @@ local function updatePositions(w, h)
         b.x = toolbarState.triggerFilterGroupButton.x - i * (b.width + BUTTON_MARGIN)
         b.y = toolbarState.triggerFilterGroupButton.y
     end
-end
 
+    toolbarState.overlayGroupButton.width = BUTTON_SIZE * scale
+    toolbarState.overlayGroupButton.height = BUTTON_SIZE * scale
+    toolbarState.overlayGroupButton.x = w - toolbarState.searchButton.width * 1.5
+    toolbarState.overlayGroupButton.y = toolbarState.triggerFilterGroupButton.y + toolbarState.triggerFilterGroupButton.height + BUTTON_MARGIN
+
+    for i, b in ipairs(toolbarState.overlayButtons) do
+        b.width = BUTTON_SIZE * scale
+        b.height = BUTTON_SIZE * scale
+        b.x = toolbarState.overlayGroupButton.x - i * (b.width + BUTTON_MARGIN)
+        b.y = toolbarState.overlayGroupButton.y
+    end
+end
 
 umg.on("@load", function()
     toolbarState.descriptionBox = DescriptionBox()
