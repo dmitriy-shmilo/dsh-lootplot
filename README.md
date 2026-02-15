@@ -23,10 +23,11 @@ Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/READM
 ## Quirky Quality (`dsh.qq`) ##
 
 ![Screenshot0](images/dsh_qq_screenshot0.png)
-![Screenshot1](images/dsh_qq_screenshot2.png)
-![Screenshot1](images/dsh_qq_screenshot3.png)
+![Screenshot2](images/dsh_qq_screenshot2.png)
+![Screenshot3](images/dsh_qq_screenshot3.png)
+![Screenshot7](images/dsh_qq_screenshot7.png)
 
-Adds some quality of life things into the game. See the mod's [README.md](/dsh.qq/README.md) for more details.
+Adds some quality of life things into the game: item search, filtering, overlays, along with some minor changes. See the mod's [README.md](/dsh.qq/README.md) for more details.
 
 ## DSH Debug (`dsh.dbg`) ##
 
