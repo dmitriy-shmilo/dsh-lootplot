@@ -47,12 +47,20 @@ local toolbarState = {
     overlays = {
         "rarity",
         "price",
-        "income"
+        "income",
+        "totalActivations",
+        "remainingActivations",
+        "doomCount",
+        "lives"
     },
     overlayTooltips = {
         rarity = "Item Rarity",
         price = "Item Price",
-        income = "Icome per Activation"
+        income = "Icome per Activation",
+        totalActivations = "Max Activations",
+        remainingActivations = "Activations Remaining",
+        doomCount = "Doom Count",
+        lives = "Extra Lives"
     },
     overlayGroupButton = {
         x = 0,
