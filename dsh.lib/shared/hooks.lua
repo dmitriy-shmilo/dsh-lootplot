@@ -47,7 +47,8 @@ local function initCallbacks(root, fname)
 
         return false
     end
-    
+
+    umg.log.info("DSH.LIB - Hooked " .. fname)
 
 end
 
@@ -55,6 +56,7 @@ local function hookLp()
     if not lp then return end
 
     if lp.dshHooks then return end
+    umg.log.info("DSH.LIB - Hooking lp.")
 
     lp.dshHooks = {
         beforeCallbacks = {},
@@ -79,6 +81,13 @@ local function hookLp()
     initCallbacks(lp, "addMoney")
     initCallbacks(lp, "subtractMoney")
     initCallbacks(lp, "setMoney")
+
+    -- definition
+    initCallbacks(lp, "defineItem")
+    initCallbacks(lp, "defineSlot")
+    initCallbacks(lp, "defineTrigger")
+
+    umg.log.info("DSH.LIB - lp hooked.")
 end
 
 local function initHooks()
