@@ -218,7 +218,87 @@ local overlays = {
 			drawCenteredText(left, top, SLOT_SIZE, SLOT_SIZE, text)
 		end
 	},
+	points = {
+		minValue = -1000,
+		maxValue = 1000,
+		lowestValue = 1000,
+		highestValue = -1000,
+		tmpColor = { r = 1, g = 1, b = 1, a = 1},
+		zeroColor = {
+			r = 180 / 255,
+			g = 180 / 255,
+			b = 180 / 255,
+			a = 0.3
+		},
+		minNegativeColor = {
+			r = 188 / 255,
+			g = 33 / 255,
+			b = 30 / 255
+		},
+		maxNegativeColor = {
+			r = 251 / 255,
+			g = 171 / 255,
+			b = 30 / 255
+		},
+		minPositiveColor = {
+			r = 87 / 255,
+			g = 139 / 255,
+			b = 52 / 255
+		},
+		maxPositiveColor = {
+			r = 53 / 255,
+			g = 200 / 255,
+			b = 63 / 255
+		},
+		onActivate = function (self)
+			self.lowestValue = self.maxValue
+			self.highestValue = self.minValue
 
+			local run = lp.singleplayer.getRun()
+			if not run then return end
+			local plot = run:getPlot()
+			lib.plotForEachItem(plot, function(item)
+				local value = item.pointsGenerated or 0
+				if value > self.highestValue then
+					self.highestValue = math.min(self.maxValue, value)
+				end
+
+				if value < self.lowestValue then
+					self.lowestValue = math.max(self.minValue, value)
+				end
+				return self.highestValue < self.maxValue or self.lowestValue > self.minValue
+			end)
+		end,
+		onItemDraw = function (self, selfEnt, x, y, rot, sx, sy)
+			local factualValue = umg.ask("dsh.qq:factualPoints", selfEnt)
+			local value = factualValue
+			local opacity = selfEnt.opacity or 1
+			local top, left = y - SLOT_SIZE / 2, x - SLOT_SIZE / 2
+			local r, g, b, a
+			if value < 0 then
+				value = normalize(value, self.lowestValue, 0)
+				r, g, b, a = lerpColor(self.minNegativeColor, self.maxNegativeColor, value)
+			elseif value > 0 then
+				value = normalize(value, 0, self.highestValue)
+				r, g, b, a = lerpColor(self.minPositiveColor, self.maxPositiveColor, value)
+			else
+				r, g, b, a = self.zeroColor.r, self.zeroColor.g, self.zeroColor.b, self.zeroColor.a
+			end
+			self.tmpColor.r = r
+			self.tmpColor.g = g
+			self.tmpColor.b = b
+			self.tmpColor.a = a
+			drawOverlaySquare(left, top, opacity, self.tmpColor)
+
+			love.graphics.setColor(r, g, b, a * opacity)
+			if factualValue < 1000 then
+				local text = tostring(factualValue)
+				drawCenteredText(left, top, SLOT_SIZE, SLOT_SIZE, text)
+			else
+				drawCenteredText(left, top, SLOT_SIZE, SLOT_SIZE, "999+")
+			end
+		end
+	},
 	totalActivations = {
 		minValue = 0,
 		maxValue = 20,
@@ -520,11 +600,16 @@ umg.on("rendering:drawEntity", RENDER_AFTER_ENTITY_ORDER - 1, function (selfEnt,
 end)
 
 umg.defineQuestion("dsh.qq:factualIncome", reducers.ADD)
+umg.defineQuestion("dsh.qq:factualPoints", reducers.ADD)
 umg.defineQuestion("dsh.qq:factualTotalActivations", reducers.PRIORITY)
 umg.defineQuestion("dsh.qq:factualRemainingActivations", reducers.PRIORITY)
 
 umg.answer("dsh.qq:factualIncome", function(ent)
 	return ent.moneyGenerated or 0
+end)
+
+umg.answer("dsh.qq:factualPoints", function(ent)
+	return ent.pointsGenerated or 0
 end)
 
 umg.answer("dsh.qq:factualTotalActivations", function(ent)
@@ -538,6 +623,7 @@ umg.answer("dsh.qq:factualRemainingActivations", function(ent)
 end)
 
 require("client.factual_income")()
+require("client.factual_points")()
 require("client.factual_activations")()
 
 return overlay

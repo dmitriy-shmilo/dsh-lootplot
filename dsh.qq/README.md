@@ -58,3 +58,4 @@ Currently supported overlays are:
 - Remaining activations.
 - Remaining doom count.
 - Remaining extra lives.
+- Item point icome per activation.
