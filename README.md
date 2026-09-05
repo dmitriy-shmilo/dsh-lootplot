@@ -21,13 +21,13 @@ Adds in-game trophy/achievement tracking, which the community came up with. Adds
 Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/README.md)
 
 ## Quirky Quality (`dsh.qq`) ##
-
+![Cover](images/dsh_qq_thumbnail.png)
 ![Screenshot0](images/dsh_qq_screenshot0.png)
-![Screenshot2](images/dsh_qq_screenshot2.png)
 ![Screenshot3](images/dsh_qq_screenshot3.png)
 ![Screenshot7](images/dsh_qq_screenshot7.png)
+![Screenshot7](images/dsh_qq_screenshot10.png)
 
-Adds some quality of life things into the game: item search, filtering, overlays, along with some minor changes. See the mod's [README.md](/dsh.qq/README.md) for more details.
+Adds some quality of life things into the game: item search, filtering, overlays, a run timer. See the mod's [README.md](/dsh.qq/README.md) for more details.
 
 ## DSH Debug (`dsh.dbg`) ##
 
@@ -45,6 +45,7 @@ A devtools mod, which adds a couple of commands to spawn items and slots in a mo
 	- The rest of the graphical assets are recolored or otherwise adjusted assets from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master/lootplot.s0).
 - Fonts:
 	- https://datagoblin.itch.io/monogram
+	- https://emhuo.itch.io/nico-pixel-fonts-pack
 - Code:
 	- Some code snippets are borrowed from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master).
 
