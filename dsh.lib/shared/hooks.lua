@@ -63,6 +63,9 @@ local function hookLp()
         afterCallbacks = {}
     }
 
+    -- lifecycle
+    initCallbacks(lp, "initialize")
+
     -- spawning
     initCallbacks(lp, "forceSpawnItem")
     initCallbacks(lp, "trySpawnItem")

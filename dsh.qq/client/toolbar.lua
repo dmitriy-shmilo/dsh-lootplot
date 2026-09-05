@@ -2,6 +2,7 @@ local globalScale = require("client.global_scale")
 local DescriptionBox = require("client.DescriptionBox")
 local query = require("shared.query")
 local overlay = require("client.overlay")
+local timer = require("client.timer")
 
 local toolbarState = {
     isActive = false,
@@ -78,6 +79,20 @@ local toolbarState = {
         end
     },
     overlayButtons = {},
+    timeButton = {
+        x = 0,
+        y = 0,
+        width = 16,
+        height = 16,
+        isActive = false,
+        getTooltip = function(self)
+            if self.isActive then
+                return "Hide the timer."
+            else
+                return "Show the timer."
+            end
+        end
+    },
     tooltip = nil
 }
 
@@ -138,14 +153,20 @@ local function getHoweredItem(x, y)
     if isHowering(toolbarState.searchButton, x, y) then return toolbarState.searchButton end
 
     if isHowering(toolbarState.triggerFilterGroupButton, x, y) then return toolbarState.triggerFilterGroupButton end
-    for _, b in pairs(toolbarState.triggerFilterButtons) do
-        if isHowering(b, x, y) then return b end
+    if toolbarState.triggerFilterGroupButton.isActive then
+        for _, b in pairs(toolbarState.triggerFilterButtons) do
+            if isHowering(b, x, y) then return b end
+        end
     end
 
     if isHowering(toolbarState.overlayGroupButton, x, y) then return toolbarState.overlayGroupButton end
-    for _, b in pairs(toolbarState.overlayButtons) do
-        if isHowering(b, x, y) then return b end
+    if toolbarState.overlayGroupButton.isActive then
+        for _, b in pairs(toolbarState.overlayButtons) do
+            if isHowering(b, x, y) then return b end
+        end
     end
+
+    if isHowering(toolbarState.timeButton, x, y) then return toolbarState.timeButton end
 
     return nil
 end
@@ -181,6 +202,11 @@ function toolbarState.overlayGroupButton:click()
     overlay.setOverlay("", false)
 end
 
+function toolbarState.timeButton:click()
+    self.isActive = not self.isActive
+    timer:setVisible(self.isActive)
+end
+
 umg.on("@update", function()
     local howered = getHoweredItem(input.getPointerPosition())
     if howered and howered.getTooltip then
@@ -213,6 +239,8 @@ umg.on("@mousepressed", function(x, y, button, istouch, presses)
             tryClick(b, x, y)
         end
     end
+
+    tryClick(toolbarState.timeButton, x, y)
 end)
 
 umg.on("@draw", 1, function()
@@ -293,6 +321,20 @@ umg.on("@draw", 1, function()
         end
     end
 
+    if toolbarState.timeButton.isActive then
+        love.graphics.setColor(1, 1, 1, 1)
+    else
+        love.graphics.setColor(1, 1, 1, 0.3)
+    end
+    rendering.drawImage(
+        "dsh_timer_icon",
+        toolbarState.timeButton.x,
+        toolbarState.timeButton.y,
+        0,
+        toolbarState.timeButton.width / 24.0,
+        toolbarState.timeButton.height / 24.0)
+    love.graphics.setColor(1, 1, 1, 1)
+
     if toolbarState.tooltip then
         local mx, my = input.getPointerPosition()
         local idealDescW = screenWidth / 3
@@ -344,6 +386,11 @@ local function updatePositions(w, h)
         b.x = toolbarState.overlayGroupButton.x - i * (b.width + BUTTON_MARGIN)
         b.y = toolbarState.overlayGroupButton.y
     end
+
+    toolbarState.timeButton.width = BUTTON_SIZE * scale
+    toolbarState.timeButton.height = BUTTON_SIZE * scale
+    toolbarState.timeButton.x = w - toolbarState.searchButton.width * 1.5
+    toolbarState.timeButton.y = toolbarState.overlayGroupButton.y + toolbarState.overlayGroupButton.height + BUTTON_MARGIN
 end
 
 umg.on("@load", function()
