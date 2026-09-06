@@ -21,6 +21,7 @@ Adds in-game trophy/achievement tracking, which the community came up with. Adds
 Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/README.md)
 
 ## Quirky Quality (`dsh.qq`) ##
+
 ![Cover](images/dsh_qq_thumbnail.png)
 ![Screenshot0](images/dsh_qq_screenshot0.png)
 ![Screenshot3](images/dsh_qq_screenshot3.png)
@@ -28,6 +29,12 @@ Full trophy and rewards list can be found in the mod's [README.md](/dsh.tt/READM
 ![Screenshot7](images/dsh_qq_screenshot10.png)
 
 Adds some quality of life things into the game: item search, filtering, overlays, a run timer. See the mod's [README.md](/dsh.qq/README.md) for more details.
+
+## Daunting Difficulty ##
+
+![Cover](images/dsh_dd_thumbnail.png)
+
+Increases the difficulty by making certain synergies less viable. Reduces the effectiveness of some overpowered items or mechanics. Patches an exploit. See the mod's [README.md](/dsh.dd/README.md) for the full list of changes and available configuration.
 
 ## DSH Debug (`dsh.dbg`) ##
 
@@ -42,12 +49,14 @@ A devtools mod, which adds a couple of commands to spawn items and slots in a mo
 	- https://jamiebrownhill.itch.io/solaria-food-drink-icon
 	- https://mtk.itch.io/grenades-16x16
 	- https://crusenho.itch.io/icons-essential-pack-free-icons
+	- https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
 	- The rest of the graphical assets are recolored or otherwise adjusted assets from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master/lootplot.s0).
 - Fonts:
 	- https://datagoblin.itch.io/monogram
 	- https://emhuo.itch.io/nico-pixel-fonts-pack
 - Code:
 	- Some code snippets are borrowed from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master).
+	- No AI has been used, I wrote all of this garbage by hand.
 
 
 ### Installation ###
