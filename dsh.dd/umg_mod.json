@@ -9,5 +9,6 @@
         "localization",
         "lootplot",
         "lootplot.rarities",
+        "lootplot.targets"
     ]
 }

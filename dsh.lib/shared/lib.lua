@@ -97,6 +97,19 @@ taggedEntities[lib.tags.WEAPON] = {
     "lootplot.s0:odins_axe"
 }
 
+taggedEntities[lib.tags.SHIELD] = {
+    "lootplot.s0:doomed_shield",
+    "lootplot.s0:wooden_shield",
+    "lootplot.s0:broken_shield",
+    "lootplot.s0:mini_wooden_shield",
+    "lootplot.s0:level_shield",
+    "lootplot.s0:interdimensional_shield",
+    "lootplot.s0:multiplier_shield",
+    "lootplot.s0:money_shield",
+    "lootplot.s0:bonus_shield",
+    "lootplot.s0:points_shield"
+}
+
 local material = { "iron", "ruby", "emerald", "golden" }
 local weaponTypes = { "sword", "axe", "spear", "hammer", "crossbow", "greatsword" }
 
@@ -116,6 +129,7 @@ end
 
 lp.defineTag(lib.tags.WEAPON)
 lp.defineTag(lib.tags.RECORD)
+lp.defineTag(lib.tags.SHIELD)
 
 -- Checks whether the entity has the specified tag, or is
 -- backtagged in lib.TAGGED_ENTITIES.
