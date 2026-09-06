@@ -1,0 +1,13 @@
+{
+    "type": "addon",
+    "name": "DSH Daunting Difficulty",
+    "description": "Increased difficulty mod.",
+    "author": "Dmitriy Shmilo",
+    "source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
+    "version": 0,
+    "uses": [
+        "localization",
+        "lootplot",
+        "lootplot.rarities",
+    ]
+}
