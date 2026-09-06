@@ -11,6 +11,9 @@ local config = {
 
 	-- makes all shields ignore shields when targeting
 	shieldsDontAffectShields = true,
+
+	-- makes injunctions more resistant to removal
+	stableInjunctions = true,
 }
 
 return config
