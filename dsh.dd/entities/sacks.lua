@@ -298,8 +298,8 @@ local darkSackGenerator = createItemGenerator(function(id, etype)
 		return false
 	end
 
-	if not lib.hasTag(etype, lib.tags.ROCKS)
-		or not lib.hasTag(etype, lib.tags.DESTRUCTIVE) then
+	if not lib.hasTag(id, lib.tags.ROCKS)
+		and not lib.hasTag(id, lib.tags.DESTRUCTIVE) then
 		return false
 	end
 	return etypes.getRedefinedItemId(id) == nil

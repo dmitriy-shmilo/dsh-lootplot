@@ -92,14 +92,14 @@ if config.shieldsDontAffectShields then
 		name = loc("Level Shield"),
 		image = "level_shield",
 		rarity = lp.rarities.UNCOMMON,
-		triggers = {"PULSE"},
+		triggers = { "LEVEL_UP" },
 
 		activateDescription = loc("{lootplot:TRIGGER_COLOR}Pulses{/lootplot:TRIGGER_COLOR} items.\nDoesn't affect shields."),
 
 		basePrice = 9,
 		baseMaxActivations = 6,
 
-		shape = lp.targets.KingShape(1),
+		shape = lp.targets.KingShape(2),
 
 		target = {
 			type = "ITEM",

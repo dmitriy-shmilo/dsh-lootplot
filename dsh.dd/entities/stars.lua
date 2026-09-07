@@ -5,6 +5,16 @@ local loc = localization.localize
 
 if not config.starsDontAffectFood then return end
 
+local function shuffled(tabl)
+	local shufTabl = {}
+	local len = #tabl
+	for i=1,#tabl do
+		local newIndex = (i % len) + 1
+		shufTabl[newIndex] = tabl[i]
+	end
+	return shufTabl
+end
+
 local function shuffleTargetShapes(selfEnt)
 	local targets = lp.targets.getTargets(selfEnt)
 	if not targets then

@@ -19,7 +19,7 @@ Increases the game difficulty, and makes some game-breaking mechanics less viabl
 - **Brittle Chests.** Golden chests have a doom counter of 1. This turns chests into one-use items, similar to other chests. Unless player spends extra effort to preserve them, that is.
 - **Sticky Consistency.** Item spawning items become sticky, similar to the square basket. Triple dice become sticky, similar to grubby coins.
 - **Grounded Furnace.** Furnace has less activations and destroys items. Only fully destroyed items will be converted. Organic and destructible items are converted into ash. Items without destruction trigger will turn into clone rocks. Ash and clone rocks won't be affected by the furnace. This rule reduces the player's ability to clone items willy-nilly: cheap to come by items like cheese or self-cloning cats no longer provide as much utility with the furnace.
-
+- **Noble Marble.** Marble chest and urns have severely reduced max activation count. Marble chest and urns, by default, spawned with 20 max activations, which seems more like an oversight.
 
 ## Customizing ##
 
