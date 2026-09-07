@@ -91,6 +91,7 @@ local function hookLp()
 
     -- misc
     initCallbacks(lp, "newItemGenerator")
+    initCallbacks(lp, "newSlotGenerator")
 
     umg.log.info("DSH.LIB - lp hooked.")
 end

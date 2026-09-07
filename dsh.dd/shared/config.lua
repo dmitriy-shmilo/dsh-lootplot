@@ -23,6 +23,12 @@ local config = {
 
 	-- nacho is of highest rarity, expensive and single-target
 	mildNacho = true,
+
+	-- chilli pepper will no longer destroy curses after draining their lives
+	mildPepper = true,
+
+	-- curse button has only two max activations, and earns less money
+	weakerCurseButton = true,
 }
 
 return config

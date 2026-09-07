@@ -14,6 +14,8 @@ Increases the game difficulty, and makes some game-breaking mechanics less viabl
 - **Pies Don't Affect Food.** All pies will no longer work on food. This reduces your ability to create extremely powerful one time use items.
 - **Stars Don't Affect Food.** Star and star card item won't work on food. Same rationale as above.
 - **Mild Nacho.** Nacho has legendary rarity, higher base price and a single target. Vanilla nacho is overpowered, especially considering its low rarity.
+- **Mild Pepper.** Chilli pepper no longer destroys curses after draining their lives. Player will have to use destructive items to finish off affected curses.
+- **Weaker Curse Button.** Curse button earns less money, and has only two max activations. This reduces player's ability to cheese the game with dozens of curses.
 
 ## Customizing ##
 

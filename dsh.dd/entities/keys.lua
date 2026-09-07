@@ -11,7 +11,7 @@ if config.oneSidedKeys then
 		activateDescription = loc("Triggers {lootplot:TRIGGER_COLOR}Unlock{/lootplot:TRIGGER_COLOR} for slots/items"),
 
 		foodItem = true,
-
+		basePrice = 5,
 		init = function(ent)
 			local rot = lp.SEED:randomMisc(0,3)
 			if rot ~= 0 then

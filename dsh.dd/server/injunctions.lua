@@ -17,7 +17,10 @@ local function forceSpawnSlot(ppos, slotEType, team)
 			doomCount = oldSlot.doomCount
 		end
 
-		if slotEType.itemSpawner or slotEType.itemReroller then
+		if slotEType.itemSpawner
+		or slotEType.itemReroller 
+		or slotEType.buttonSlot
+		or (slotEType.canAddItemToSlot and (not slotEType:canAddItemToSlot(itemEnt))) then
 			local slot = lp.forceSpawnSlot(ppos, server.entities["null_slot"], team)
 			if slot then
 				slot.doomCount = doomCount

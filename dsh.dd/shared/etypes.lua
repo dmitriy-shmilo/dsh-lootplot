@@ -4,6 +4,9 @@ local etypes = {
 local replacedSlots = {
 }
 
+local originalSlots = {
+}
+
 local replacedItems = {
 }
 
@@ -18,6 +21,7 @@ end
 
 function etypes.redefineSlot(id, newId, definition)
 	replacedSlots[id] = newId
+	originalSlots[newId] = id
 	lp.defineSlot(newId, definition)
 end
 
@@ -31,6 +35,10 @@ end
 
 function etypes.getOriginalItemId(id)
 	return originalItems[id]
+end
+
+function etypes.getOriginalSlotId(id)
+	return originalSlots[id]
 end
 
 return etypes
