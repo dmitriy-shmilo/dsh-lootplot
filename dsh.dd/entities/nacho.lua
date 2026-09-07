@@ -16,6 +16,7 @@ etypes.redefineItem("lootplot.s0:nacho", "dsh.dd:nacho", {
 	unlockAfterWins = 2,
 	basePrice = 18,
 	shape = lp.targets.UpShape(1),
+	lootplotTags = { lib.tags.ORGANIC },
 
 	target = {
 		type = "ITEM",

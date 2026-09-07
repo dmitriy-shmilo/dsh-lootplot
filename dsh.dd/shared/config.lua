@@ -35,6 +35,9 @@ local config = {
 
 	-- makes item-generating items and triple dice sticky
 	stickyConsistency = true,
+
+	-- furnace has less activations, destroys items to turn them into stone, turns organic items into useless ash
+	groundedFurnace = true
 }
 
 return config

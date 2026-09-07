@@ -12,7 +12,7 @@ local function definePie(id, name, desc, addShape, rarity)
 		activateDescription = loc(desc),
 		foodItem = true,
 		baseMaxActivations = 1,
-		lootplotTags = { lib.tags.FOOD },
+		lootplotTags = { lib.tags.FOOD, lib.tags.ORGANIC },
 
 		basePrice = 7,
 
@@ -71,7 +71,7 @@ etypes.redefineItem("lootplot.s0:randomizer_pie", "dsh.dd:randomizer_pie", {
 	activateDescription = loc("Randomizes item's shape. Doesn't affect food."),
 	foodItem = true,
 	baseMaxActivations = 1,
-	lootplotTags = { lib.tags.FOOD },
+	lootplotTags = { lib.tags.FOOD, lib.tags.ORGANIC },
 	basePrice = 7,
 	rarity = lp.rarities.RARE,
 	shape = lp.targets.UP_SHAPE,

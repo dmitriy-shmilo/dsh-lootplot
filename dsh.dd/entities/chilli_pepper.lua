@@ -9,7 +9,7 @@ etypes.redefineItem("lootplot.s0:chilli_pepper", "dsh.dd:chilli_pepper", {
     name = loc("Chilli Pepper"),
     image = "chilli_pepper",
     foodItem = true,
-    lootplotTags = { lib.tags.FOOD },
+    lootplotTags = { lib.tags.FOOD, lib.tags.ORGANIC },
     rarity = lp.rarities.UNCOMMON,
     activateDescription = loc("Spawns basic slots.\nRemoves all {lootplot:LIFE_COLOR}lives{/lootplot:LIFE_COLOR} from target curses."),
 

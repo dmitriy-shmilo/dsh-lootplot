@@ -24,7 +24,9 @@ local lib = {
         -- custom tags
         RECORD = "dsh.lib:record",
         WEAPON = "dsh.lib:weapon",
-        SHIELD = "dsh.lib:shield"
+        SHIELD = "dsh.lib:shield",
+        ORGANIC = "dsh.lib:organic",
+        FIREPROOF = "dsh.lib:fireproof"
     },
 
     -- vanilla entities, which need to be treated as if they have certain tags
@@ -110,6 +112,92 @@ taggedEntities[lib.tags.SHIELD] = {
     "lootplot.s0:points_shield"
 }
 
+taggedEntities[lib.tags.FIREPROOF] = {
+    "lootplot.s0:clone_rocks"
+}
+
+taggedEntities[lib.tags.ORGANIC] = {
+    "lootplot.s0:cheese_slice",
+    "lootplot.s0:evil_cheese_slice",
+    "lootplot.s0:butter",
+    "lootplot.s0:magic_turnip",
+    "lootplot.s0:golden_turnip",
+    "lootplot.s0:doomed_turnip",
+    "lootplot.s0:slot_turnip",
+    "lootplot.s0:gray_turnip",
+    "lootplot.s0:green_olive",
+    "lootplot.s0:green_squash",
+    "lootplot.s0:red_olive",
+    "lootplot.s0:red_squash",
+    "lootplot.s0:teal_olive",
+    "lootplot.s0:black_olive",
+    "lootplot.s0:eggplant",
+    "lootplot.s0:raspberry",
+    "lootplot.s0:fortune_cookie",
+    "lootplot.s0:heartfruit_half",
+    "lootplot.s0:heartfruit_purple",
+    "lootplot.s0:raw_steak",
+    "lootplot.s0:raw_potato",
+    "lootplot.s0:salmon_steak",
+    "lootplot.s0:salmon",
+    "lootplot.s0:cucumber_slices",
+    "lootplot.s0:dirty_muffin",
+    "lootplot.s0:sniper_berries",
+    "lootplot.s0:ginger_roots",
+    "lootplot.s0:stone_fruit",
+    "lootplot.s0:chocolate_square",
+    "lootplot.s0:sliced_stone_fruit",
+    "lootplot.s0:dragonfruit",
+    "lootplot.s0:dragonfruit_slice",
+    "lootplot.s0:sausage",
+    "lootplot.s0:ruby_candy",
+    "lootplot.s0:diamond_candy",
+    "lootplot.s0:steelberry",
+    "lootplot.s0:avacado",
+    "lootplot.s0:fried_egg",
+    "lootplot.s0:burned_loaf",
+    "lootplot.s0:golden_loaf",
+    "lootplot.s0:food_loaf",
+    "lootplot.s0:coconut",
+    "lootplot.s0:lime",
+    "lootplot.s0:lemon",
+    "lootplot.s0:black_bean",
+    "lootplot.s0:evil_cheese_slice",
+    "lootplot.s0:tangerine",
+    "lootplot.s0:sliced_apple",
+    "lootplot.s0:bananas",
+    "lootplot.s0:blueberry",
+    "lootplot.s0:golden_apple",
+    "lootplot.s0:ruby_apple",
+    "lootplot.s0:diamond_apple",
+    "lootplot.s0:green_apple",
+    "lootplot.s0:lychee",
+    "lootplot.s0:purple_brain",
+    "lootplot.s0:cloneberries",
+    "lootplot.s0:doomed_cloneberries",
+    "lootplot.s0:slice_of_cake",
+    "lootplot.s0:red_cheesecake",
+    "lootplot.s0:blue_cheesecake",
+    "lootplot.s0:mushroom_red",
+    "lootplot.s0:mushroom_purple",
+    "lootplot.s0:mushroom_pink",
+    "lootplot.s0:mushroom_green",
+    "lootplot.s0:mushroom_blue",
+    "lootplot.s0:mushroom_floaty",
+    "lootplot.s0:pink_donut",
+    "lootplot.s0:frosted_donut",
+    "lootplot.s0:bread",
+
+    "lootplot.s0:copycat",
+    "lootplot.s0:dangerously_funny_cat",
+    "lootplot.s0:splatter_cat",
+    "lootplot.s0:copykitten",
+    "lootplot.s0:midas_cat",
+    "lootplot.s0:pink_cat",
+    "lootplot.s0:crappy_cat",
+    "lootplot.s0:evil_cat",
+}
+
 local material = { "iron", "ruby", "emerald", "golden" }
 local weaponTypes = { "sword", "axe", "spear", "hammer", "crossbow", "greatsword" }
 
@@ -130,6 +218,8 @@ end
 lp.defineTag(lib.tags.WEAPON)
 lp.defineTag(lib.tags.RECORD)
 lp.defineTag(lib.tags.SHIELD)
+lp.defineTag(lib.tags.ORGANIC)
+lp.defineTag(lib.tags.FIREPROOF)
 
 -- Checks whether the entity has the specified tag, or is
 -- backtagged in lib.TAGGED_ENTITIES.
