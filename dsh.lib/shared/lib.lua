@@ -197,6 +197,8 @@ end
 if server then
     
 end
+
 lib.hooks = require("shared.hooks")
+require("shared.patch")()
 
 return lib

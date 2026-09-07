@@ -26,11 +26,12 @@ local function initCallbacks(root, fname)
     root[fname] = function (...)
         local callbacks = root.dshHooks.beforeCallbacks[fname]
         local allow = true
-
+        local result = nil
         for _, c in pairs(callbacks) do
-            local result = c(...)
-            if type(result) == "boolean" then
-                allow = allow and result
+            local continue
+            continue, result = c(...)
+            if type(continue) == "boolean" then
+                allow = allow and continue
             end
         end
 
@@ -45,7 +46,7 @@ local function initCallbacks(root, fname)
             return result
         end
 
-        return false
+        return result
     end
 
     umg.log.info("DSH.LIB - Hooked " .. fname)
