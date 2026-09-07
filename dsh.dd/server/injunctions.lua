@@ -9,6 +9,7 @@ end
 
 local function forceSpawnSlot(ppos, slotEType, team)
 	local item = lp.posToItem(ppos)
+
 	if lib.hasTag(item, lib.tags.INJUNCTION_CURSE) then
 		local doomCount = 5
 		local oldSlot = lp.posToSlot(ppos)
@@ -21,7 +22,7 @@ local function forceSpawnSlot(ppos, slotEType, team)
 			if slot then
 				slot.doomCount = doomCount
 			end
-			return false
+			return false, slot
 		end
 	end
 	return true

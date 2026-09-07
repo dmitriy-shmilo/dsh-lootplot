@@ -14,6 +14,15 @@ local config = {
 
 	-- makes injunctions more resistant to removal
 	stableInjunctions = true,
+
+	-- makes pies ignore food items when targeting
+	piesDontAffectFood = true,
+
+	-- makes the star and the star card ignore food when targeting
+	starsDontAffectFood = true,
+
+	-- nacho is of highest rarity, expensive and single-target
+	mildNacho = true,
 }
 
 return config

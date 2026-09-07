@@ -11,7 +11,9 @@ Increases the game difficulty, and makes some game-breaking mechanics less viabl
 - **Rare Sacks.** Big and epic sacks have an increased rarity, which makes them spawn less often in shops. You can also no longer find a big or epic sack in an uncommon sack loot.
 - **One Sided Keys.** Keys no longer have two targets by default. This makes you either produce and spawn more keys, or find ways to rotate them more often.
 - **Shields Don't Affect Shields.** Shields no longer can target each other or themselves. This reduces your ability to create cheap repeater and doom counter machines.
-
+- **Pies Don't Affect Food.** All pies will no longer work on food. This reduces your ability to create extremely powerful one time use items.
+- **Stars Don't Affect Food.** Star and star card item won't work on food. Same rationale as above.
+- **Mild Nacho.** Nacho has legendary rarity, higher base price and a single target. Vanilla nacho is overpowered, especially considering its low rarity.
 
 ## Customizing ##
 
@@ -20,4 +22,4 @@ All overrides are in effect by default. You can toggle any of them off by openin
 
 ## Known Issues ##
 
-This mod has to redefine some existing items, which will screw up your compendium.
+This mod has to redefine some existing items, which will screw up your compendium: some items will appear in compendium twice, some items might show up as undiscovered.
