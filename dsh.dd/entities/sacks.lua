@@ -124,7 +124,7 @@ local function defineSack(id, definition)
 	end
 	definition.activateInstantly = true
 	definition.canItemFloat = true
-	definition.lootplotTags = { lib.tags.TREASURE }
+	definition.lootplotTags = { lib.tags.TREASURE, lib.tags.FOOD }
 	definition.target = {
 		type = "NO_SLOT",
 		filter = function(selfEnt, ppos)
