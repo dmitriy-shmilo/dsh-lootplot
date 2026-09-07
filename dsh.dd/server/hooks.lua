@@ -21,5 +21,21 @@ local function trySpawnItem(ppos, type, team, spawnMidair)
 	return true
 end
 
+local function newItemGenerator(args)
+	local needsAbort = not args
+	args = args or {}
+	local oldFilter = args.filter or function() return true end
+	args.filter = function(item, weight)
+		local isReplaced = etypes.getRedefinedItemId(item)
+		if isReplaced then return false end
+		return oldFilter(item, weight)
+	end
+	if needsAbort then
+		return false, lp.newItemGenerator(args)
+	end
+	return true
+end
+
 lib.hooks.addBeforeCallback(lp, "forceSpawnItem", forceSpawnItem)
 lib.hooks.addBeforeCallback(lp, "trySpawnItem", trySpawnItem)
+lib.hooks.addBeforeCallback(lp, "newItemGenerator", newItemGenerator)

@@ -36,14 +36,12 @@ local function initCallbacks(root, fname)
         end
 
         if allow then
-            local result = original(...)
-            local callbacks = root.dshHooks.afterCallbacks[fname]
+            result = original(...)
+        end
+        local callbacks = root.dshHooks.afterCallbacks[fname]
 
-            for _, c in pairs(callbacks) do
-                c(...)
-            end
-
-            return result
+        for _, c in pairs(callbacks) do
+            c(...)
         end
 
         return result
@@ -90,6 +88,9 @@ local function hookLp()
     initCallbacks(lp, "defineItem")
     initCallbacks(lp, "defineSlot")
     initCallbacks(lp, "defineTrigger")
+
+    -- misc
+    initCallbacks(lp, "newItemGenerator")
 
     umg.log.info("DSH.LIB - lp hooked.")
 end

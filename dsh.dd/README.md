@@ -22,4 +22,4 @@ All overrides are in effect by default. You can toggle any of them off by openin
 
 ## Known Issues ##
 
-This mod has to redefine some existing items, which will screw up your compendium: some items will appear in compendium twice, some items might show up as undiscovered.
+This mod has to redefine some existing items, which will screw up your compendium: some items might show up as undiscovered. This is a benign issue. If the mod is uninstalled, or the redefined item is encountered in a run again, it will begin showing up correctly.
