@@ -29,6 +29,12 @@ local config = {
 
 	-- curse button has only two max activations, and earns less money
 	weakerCurseButton = true,
+
+	-- makes golden chest items DOOMED-1
+	brittleChests = true,
+
+	-- makes item-generating items and triple dice sticky
+	stickyConsistency = true,
 }
 
 return config

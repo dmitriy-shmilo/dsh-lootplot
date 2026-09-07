@@ -16,6 +16,9 @@ Increases the game difficulty, and makes some game-breaking mechanics less viabl
 - **Mild Nacho.** Nacho has legendary rarity, higher base price and a single target. Vanilla nacho is overpowered, especially considering its low rarity.
 - **Mild Pepper.** Chilli pepper no longer destroys curses after draining their lives. Player will have to use destructive items to finish off affected curses.
 - **Weaker Curse Button.** Curse button earns less money, and has only two max activations. This reduces player's ability to cheese the game with dozens of curses.
+- **Brittle Chests.** Golden chests have a doom counter of 1. This turns chests into one-use items, similar to other chests. Unless player spends extra effort to preserve them, that is.
+- **Sticky Consistency.** Item spawning items become sticky, similar to the square basket. Triple dice become sticky, similar to grubby coins.
+
 
 ## Customizing ##
 
