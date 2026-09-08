@@ -40,7 +40,10 @@ local config = {
 	nobleMarble = true,
 
 	-- furnace has less activations, destroys items to turn them into stone, turns organic items into useless ash
-	groundedFurnace = true
+	groundedFurnace = true,
+
+	-- pineapple ring is more rare and won't reduce price below zero, tickets are sticky, both have less activations
+	modestDiscounts = true,
 }
 
 return config
