@@ -47,6 +47,9 @@ local config = {
 
 	-- pineapple ring is more rare and won't reduce price below zero, tickets are sticky, both have less activations
 	modestDiscounts = true,
+
+	-- bomb is a one-time use food
+	edibleBomb = true,
 }
 
 return config
