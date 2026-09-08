@@ -40,8 +40,6 @@ etypes.redefineItem("lootplot.s0:furnace", "dsh.dd:furnace", {
 			lp.destroy(targetEnt)
 			if not willConvert then return end
 
-			print(targetEnt:getEntityType():getTypename(), base.inspect(targetEnt.lootplotTags))
-
 			local type = nil
 			if lib.hasTag(targetEnt, lib.tags.ORGANIC) or lp.hasTrigger(targetEnt, "DESTROY") then
 				type = server.entities["furnace_ash"]
