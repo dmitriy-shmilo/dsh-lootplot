@@ -1,5 +1,7 @@
 local config = {
-	mallBall = true
+	-- community scenarios
+	mallBall = true,
+	choiceBall = true
 }
 
 return config

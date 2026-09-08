@@ -10,6 +10,8 @@
         "lootplot",
         "lootplot.rarities",
         "lootplot.targets",
-        "lootplot.worldgen"
+        "lootplot.worldgen",
+        "lootplot.s0",
+        "objects"
     ]
 }
