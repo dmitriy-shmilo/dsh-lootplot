@@ -10,6 +10,11 @@ Adds some quality of life improvements into the game.
 
 Displays padlock icons on locked reroll slots. Will display a padlock even if the slot is empty, which is useful to make sure that your doomed reroll slots aren't wasting away on rerolls.
 
+## Adaptive Action Buttons ##
+
+![Screenshot10](../images/dsh_qq_screenshot11.png)
+
+Action buttons will appear at the top of the screen when you're trying to see the bottom rows of the world.
 
 ## Item Search ##
 

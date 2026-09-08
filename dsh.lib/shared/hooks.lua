@@ -96,8 +96,24 @@ local function hookLp()
     umg.log.info("DSH.LIB - lp hooked.")
 end
 
+local function hookState()
+    if not state then return end
+
+    if state.dshHooks then return end
+    umg.log.info("DSH.LIB - Hooking state.")
+
+    state.dshHooks = {
+        beforeCallbacks = {},
+        afterCallbacks = {}
+    }
+
+    initCallbacks(state, "push")
+    initCallbacks(state, "pop")
+end
+
 local function initHooks()
     hookLp()
+    hookState()
 end
 
 function hooks.addBeforeCallback(root, fname, callback)
