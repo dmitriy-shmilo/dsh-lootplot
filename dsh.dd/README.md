@@ -11,6 +11,7 @@ Increases the game difficulty, and makes some game-breaking mechanics less viabl
 - **Rare Sacks.** Big and epic sacks have an increased rarity, which makes them spawn less often in shops. You can also no longer find a big or epic sack in an uncommon sack loot.
 - **One Sided Keys.** Keys no longer have two targets by default. This makes you either produce and spawn more keys, or find ways to rotate them more often.
 - **Shields Don't Affect Shields.** Shields no longer can target each other or themselves. This reduces your ability to create cheap repeater and doom counter machines.
+- **Quarter Shields.** Attribute shields divide negative values in half instead of simply flipping the sign, and have less base activations. This creates value in activation counts for these types of items, and incentivizes the player to find a way to activate them repeatedly. It also prevents a strategy of driving an attribute deep into the negatives and then simply flipping it once.
 - **Pies Don't Affect Food.** All pies will no longer work on food. This reduces your ability to create extremely powerful one time use items.
 - **Stars Don't Affect Food.** Star and star card item won't work on food. Same rationale as above.
 - **Mild Nacho.** Nacho has legendary rarity, higher base price and a single target. Vanilla nacho is overpowered, especially considering its low rarity.

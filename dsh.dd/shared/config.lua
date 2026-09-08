@@ -12,6 +12,9 @@ local config = {
 	-- makes all shields ignore shields when targeting
 	shieldsDontAffectShields = true,
 
+	-- attribute shields divide negative values instead of flipping them, and have reduced activation count
+	quarterShields = true,
+
 	-- makes injunctions more resistant to removal
 	stableInjunctions = true,
 

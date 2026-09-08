@@ -143,3 +143,82 @@ if config.shieldsDontAffectShields then
 		lootplotTags = { lib.tags.SHIELD }
 	})
 end
+
+if config.quarterShields then
+	etypes.redefineItem("lootplot.s0:money_shield", "dsh.dd:money_shield", {
+		name = loc("Money Shield"),
+		image = "money_shield",
+		triggers = { "PULSE" },
+		unlockAfterWins = 2,
+		rarity = lp.rarities.RARE,
+		basePrice = 10,
+		baseMaxActivations = 2,
+		activateDescription = loc("If {lootplot:MONEY_COLOR}money{/lootplot:MONEY_COLOR} is negative, divides it in half."),
+
+		onActivate = function(ent)
+			local mon = lp.getMoney(ent) or 100
+			if mon < 0 then
+				lp.setMoney(ent, mon / 2)
+			end
+		end,
+
+		basePointsGenerated = 10
+	})
+
+	etypes.redefineItem("lootplot.s0:bonus_shield", "dsh.dd:bonus_shield", {
+		name = loc("Bonus Shield"),
+		image = "bonus_shield",
+		triggers = { "PULSE" },
+		unlockAfterWins = 2,
+		rarity = lp.rarities.RARE,
+		basePrice = 10,
+		baseMaxActivations = 2,
+		activateDescription = loc("If {lootplot:BONUS_COLOR}bonus{/lootplot:BONUS_COLOR} is negative, divides it in half."),
+
+		onActivate = function(ent)
+			local pts = lp.getPointsBonus(ent) or 100
+			if pts < 0 then
+				lp.setPointsBonus(ent, pts / 2)
+			end
+		end,
+	})
+
+	etypes.redefineItem("lootplot.s0:points_shield", "dsh.dd:points_shield", {
+		name = loc("Points Shield"),
+		image = "points_shield",
+		triggers = { "PULSE" },
+		unlockAfterWins = 2,
+		rarity = lp.rarities.RARE,
+		basePrice = 10,
+		baseMaxActivations = 2,
+		activateDescription = loc("If {lootplot:POINTS_COLOR}points{/lootplot:POINTS_COLOR} is negative, divides it in half."),
+
+		onActivate = function(ent)
+			local pts = lp.getPoints(ent) or 100
+			if pts < 0 then
+				lp.setPoints(ent, pts / 2)
+			end
+		end,
+	})
+
+
+
+
+	etypes.redefineItem("lootplot.s0:multiplier_shield", "dsh.dd:multiplier_shield", {
+		name = loc("Multiplier Shield"),
+		image = "multiplier_shield",
+		triggers = { "PULSE" },
+		unlockAfterWins = 2,
+		rarity = lp.rarities.RARE,
+		basePrice = 10,
+		baseMaxActivations = 2,
+		activateDescription = loc("If {lootplot:POINTS_MULT_COLOR}multiplier{/lootplot:POINTS_MULT_COLOR} is negative, divides it in half.");
+
+		onActivate = function(ent)
+			local mult = lp.getPointsMult(ent) or 100
+			if mult < 0 then
+				lp.setPointsMult(ent, mult / 2)
+			end
+		end,
+	})
+end
