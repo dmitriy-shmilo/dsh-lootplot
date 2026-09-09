@@ -23,8 +23,10 @@ Increases the game difficulty, and makes some game-breaking mechanics less viabl
 - **Noble Marble.** Marble chest and urns have severely reduced max activation count. Marble chest and urns, by default, spawned with 20 max activations, which seems more like an oversight.
 - **Modest Discounts.** Pineapple ring is bumped one rarity level, has its activations reduced and doesn't reduce the item price below zero. Cent tickets are sticky and all have five activations. Vanilla pineapple ring is overpowered, and ticket stickiness adds strategic complexity.
 - **Edible Bomb.** Bombs are one-time use food items. They will now appear in food shops and sacks, and disappear after use. Vanilla bomb was way too overpowered.
-- **Sturdy Locks.** Roughly 25% of locked slots will spawn as double-locked slots, requiring two keys to open. Vanila world generation litters the map with locked slots, often allowing the player to elevate the run with a single key. This rule slightly slows down such elevation.
-- **Less Space.** Roughly 10% of locked slots will instead spawn as stone slots and will try to spawn several additional stone slots around them. This slightly rule reduces the available space for the player, and, more importantly, sometimes breaks long lock chains, denying the player easy treasure.
+- **Sturdy Locks.** Roughly 25% of locked slots will spawn as double-locked slots, requiring two keys to open. Vanilla world generation litters the map with locked slots, often allowing the player to elevate the run with a single key. This rule slightly slows down such elevation.
+- **Less Space.** Roughly 10% of locked slots will instead spawn as stone slots and will try to spawn several additional stone slots around them. This rule slightly reduces the available space for the player, and, more importantly, sometimes breaks long lock chains, denying the player easy treasure.
+- **Soft Rocks.** Destructible items have roughly 66% less lives. Vanilla destructibles have an enourmous amount of lives, even a $0 bone can last for an entire run without much effort.
+- **Season Sale.** Sell slots will earn half of the item's price once, and set its price to zero. This prevents the player from earning almost the full price of an item, which has lives, by selling it several times. Has no effect on items without lives.
 
 ## Customizing ##
 

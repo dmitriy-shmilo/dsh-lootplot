@@ -55,7 +55,13 @@ local config = {
 	sturdyLocks = true,
 
 	-- locked slots have 10% of spawning as useless stone slots, and spawn additional stone slots around
-	lessSpace = true
+	lessSpace = true,
+
+	-- destructible items will have substantially less lives
+	softRocks = true,
+
+	-- sell slots earn half the item price once, and set the price to zero
+	seasonSale = true
 }
 
 return config
