@@ -4,7 +4,8 @@ local config = {
 	choiceBall = true,
 
 	-- community items
-	royalSlot = true
+	royalSlot = true,
+	eraser = true
 }
 
 return config
