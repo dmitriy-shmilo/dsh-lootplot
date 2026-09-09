@@ -38,6 +38,7 @@ etypes.redefineItem("lootplot.s0:pineapple_ring", "dsh.dd:pineapple_ring", {
 	rarity = lp.rarities.RARE,
 })
 
+local PRICE_CAP = 6
 etypes.redefineItem("lootplot.s0:6_cent_ticket", "dsh.dd:6_cent_ticket", {
 	name = loc("6 Cent Ticket"),
 	image = "6_cent_ticket",
@@ -75,6 +76,7 @@ etypes.redefineItem("lootplot.s0:6_cent_ticket", "dsh.dd:6_cent_ticket", {
 
 etypes.redefineItem("lootplot.s0:0_cent_ticket", "dsh.dd:0_cent_ticket", {
 	name = loc("0 Cent Ticket"),
+	image = "0_cent_ticket",
 	triggers = { "PULSE", "REROLL" },
 
 	activateDescription = loc("Reduces item prices by {lootplot:MONEY_COLOR}$3{/lootplot:MONEY_COLOR}."),

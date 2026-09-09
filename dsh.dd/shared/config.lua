@@ -50,6 +50,12 @@ local config = {
 
 	-- bomb is a one-time use food
 	edibleBomb = true,
+
+	-- locked slots have 25% chance of spawning as double-locked slots
+	sturdyLocks = true,
+
+	-- locked slots have 10% of spawning as useless stone slots, and spawn additional stone slots around
+	lessSpace = true
 }
 
 return config

@@ -111,9 +111,29 @@ local function hookState()
     initCallbacks(state, "pop")
 end
 
+local function hookUnlocks()
+    if not lp then return end
+    if not lp.unlocks then return end
+
+    if lp.unlocks.dshHooks then return end
+    umg.log.info("DSH.LIB - Hooking unlocks.")
+
+    lp.unlocks.dshHooks = {
+        beforeCallbacks = {},
+        afterCallbacks = {}
+    }
+
+    initCallbacks(lp.unlocks, "forceSpawnLockedSlot")
+    initCallbacks(lp.unlocks, "trySpawnLockedSlot")
+    initCallbacks(lp.unlocks, "forceSpawnMysterySlot")
+    initCallbacks(lp.unlocks, "trySpawnMysterySlot")
+    
+end
+
 local function initHooks()
     hookLp()
     hookState()
+    hookUnlocks()
 end
 
 function hooks.addBeforeCallback(root, fname, callback)
