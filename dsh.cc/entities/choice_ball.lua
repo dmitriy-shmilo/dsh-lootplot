@@ -180,10 +180,10 @@ local function spawnShops(cpos, team, difficulty)
 
 	if difficulty < 2 then
 		lp.forceSpawnSlot(cpos:move(-3, 0), server.entities["food_shop_slot"], team)
-		lp.forceSpawnSlot(cpos:move(-2, 1), server.entities["shop_slot"], team)
 	end
 
 	if difficulty < 1 then
+		lp.forceSpawnSlot(cpos:move(-2, 1), server.entities["shop_slot"], team)
 		lp.forceSpawnSlot(cpos:move(-2, -1), server.entities["shop_slot"], team)
 	end
 end

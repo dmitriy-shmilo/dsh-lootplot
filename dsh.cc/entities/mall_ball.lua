@@ -122,13 +122,13 @@ lp.defineSlot("dsh.cc:mall_reroll_button", {
 	end
 })
 
-local RICH_DESC = loc("Start with a huge shop and expensive rerolls. Original idea by {lootplot:BORING_COLOR}DvdK{/lootplot:BORING_COLOR}.")
+local RICH_DESC = loc("Start with a huge shop and expensive rerolls. Original idea by {lootplot:BORING_COLOR}Voltgojjj{/lootplot:BORING_COLOR}.")
 lp.defineItem("dsh.cc:mall_ball", {
 	name = loc("Mall Ball"),
 	image = "mall_ball",
 	canItemFloat = true,
 	triggers = { "PULSE" },
-	description = loc("Start with a huge shop and expensive rerolls. Original idea by DvdK."),
+	description = loc("Start with a huge shop and expensive rerolls. Original idea by Voltgojjj."),
 	rarity = lp.rarities.UNIQUE,
 	onActivateOnce = function(ent)
 		local ppos = lp.getPos(ent)
@@ -138,7 +138,7 @@ lp.defineItem("dsh.cc:mall_ball", {
 
 		lp.setMoney(ent, 10)
 		lp.setAttribute("NUMBER_OF_ROUNDS", ent, 6)
-
+		ent.description = RICH_DESC
 		spawnWalls(ppos, team, difficulty)
 		spawnShops(ppos, team, difficulty)
 		spawnBottomRow(ppos, team, difficulty)
