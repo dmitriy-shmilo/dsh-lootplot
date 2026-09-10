@@ -1,5 +1,7 @@
 # Community Creations #
 
+![Cover](../images/dsh_cc_thumbnail.png)
+
 Implements all of the crazy ideas, which Lootplot community had over the years.
 
 ## New Scenarios ##

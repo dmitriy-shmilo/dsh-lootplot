@@ -4,6 +4,8 @@ A collection of mods for the Lootplot game.
 
 ## Community Creations (`dsh.cc`) ##
 
+![Cover](images/dsh_cc_thumbnail.png)
+
 A bunch of random community ideas implemented as a mod. See the [README.md](/dsh.cc/README.md) for the full list and credits.
 
 ## Trophy Territory (`dsh.tt`) ##
