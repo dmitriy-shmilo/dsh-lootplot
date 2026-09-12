@@ -66,6 +66,7 @@ A collection of utility and cool hacks, which enable other mods' functionality. 
 	- [monogram](https://datagoblin.itch.io/monogram) by datagobling
 	- [nico pixel fonts](https://emhuo.itch.io/nico-pixel-fonts-pack) by emhuo
 	- [free cheese](https://ggbot.itch.io/free-cheese-font) by ggbot
+	- [bangers](https://github.com/googlefonts/bangers) by Vernon Adams
 - Code:
 	- Some code snippets are borrowed from the [official sources](https://github.com/UntitledModGame/umg-mods/tree/master).
 	- No AI has been used, I wrote all of this garbage by hand.

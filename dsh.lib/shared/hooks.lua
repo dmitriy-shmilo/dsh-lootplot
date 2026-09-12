@@ -127,7 +127,7 @@ local function hookUnlocks()
     initCallbacks(lp.unlocks, "trySpawnLockedSlot")
     initCallbacks(lp.unlocks, "forceSpawnMysterySlot")
     initCallbacks(lp.unlocks, "trySpawnMysterySlot")
-    
+
 end
 
 local function initHooks()

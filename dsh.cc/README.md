@@ -8,6 +8,7 @@ Implements all of the crazy ideas, which Lootplot community had over the years.
 
 - **Mall Ball**. Start with a lot of shops, which don't reroll on pulse, and an expensive reroll button. An idea by [Voltgojjj](https://discord.com/channels/863625920991854602/1418249715690242210/1418249715690242210).
 - **Choice Ball**. Start by choosing any two items from the item pool. An idea by [system fan](https://discord.com/channels/863625920991854602/1449275053865701506/1449275053865701506).
+- **Tennis Ball**. Hinders player's ability to generate points, unless they constantly buy new items. An idea by [ZeroFractal](https://discord.com/channels/863625920991854602/1382477547937468446/1382477547937468446).
 
 ## New Items ##
 
