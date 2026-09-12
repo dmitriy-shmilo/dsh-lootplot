@@ -3,6 +3,7 @@ local config = {
 	-- community scenarios
 	mallBall = true,
 	choiceBall = true,
+	tennisBall = true,
 
 	-- community items
 	royalSlot = true,

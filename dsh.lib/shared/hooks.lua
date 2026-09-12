@@ -127,7 +127,20 @@ local function hookUnlocks()
     initCallbacks(lp.unlocks, "trySpawnLockedSlot")
     initCallbacks(lp.unlocks, "forceSpawnMysterySlot")
     initCallbacks(lp.unlocks, "trySpawnMysterySlot")
-    
+end
+
+local function hookClient()
+    if not client then return end
+
+    if client.dshHooks then return end
+    umg.log.info("DSH.LIB - Hooking client.")
+
+    lp.client = {
+        beforeCallbacks = {},
+        afterCallbacks = {}
+    }
+
+    initCallbacks(lp.client, "send")
 end
 
 local function initHooks()

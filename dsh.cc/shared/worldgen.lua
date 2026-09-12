@@ -60,4 +60,21 @@ function worldgen.spawnDoomClock(ent, dx,dy)
 	worldgen.clearFogInCircle(ppos, team, 1)
 end
 
+function worldgen.forceSpawnSlotsAround(ppos, slotType, w, h, lootplotTeam, transform)
+	assert(server, "Can only be called on server-side")
+	for dx = math.floor(-w / 2 + 0.5), math.floor(w / 2 + 0.5) - 1 do
+		for dy = math.floor(-h / 2 + 0.5), math.floor(h / 2 + 0.5) - 1 do
+			local p2 = ppos:move(dx,dy)
+			if p2 then
+				local slotEnt = lp.forceSpawnSlot(p2, slotType, lootplotTeam)
+				if not slotEnt then
+					umg.log.error("SPAWN: Couldnt spawn slot at pos: ", ppos)
+				elseif transform then
+					transform(slotEnt)
+				end
+			end
+		end
+	end
+end
+
 return worldgen
