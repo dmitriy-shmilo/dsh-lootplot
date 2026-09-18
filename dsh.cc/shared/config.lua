@@ -7,7 +7,8 @@ local config = {
 	-- community items
 	royalSlot = true,
 	eraser = true,
-	steakUnmaker = true
+	steakUnmaker = true,
+	colorfulLoaves = true
 }
 
 return config
