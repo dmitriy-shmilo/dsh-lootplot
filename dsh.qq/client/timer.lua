@@ -3,8 +3,8 @@ local DescriptionBox = require("client.DescriptionBox")
 local query = require("shared.query")
 local overlay = require("client.overlay")
 local runStats = require("client.run_stats")
-
-local timerFont = love.graphics.newFont("/assets/fonts/monogram-extended.ttf", 64, "mono", 1) or love.graphics.getFont()
+local fonts = require("client.fonts")
+local timerFont = fonts.getDefaultFont(64)
 
 local timerState = {
     isVisible = false,

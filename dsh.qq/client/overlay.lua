@@ -1,3 +1,4 @@
+local fonts = require("client.fonts")
 local globalScale = require("client.global_scale")
 local lib = require("shared.lib")
 
@@ -5,7 +6,7 @@ local RENDER_AFTER_ENTITY_ORDER = 10001
 local ITEM_SIZE = 16
 local SLOT_SIZE = 24
 
-local defaultFontLarge = love.graphics.newFont("/assets/fonts/monogram-extended.ttf", 64, "mono", 1) or love.graphics.getFont()
+local defaultFontLarge = fonts.getDefaultFont(64)
 
 local function lerp(a, b, t)
 	return a + t * (b - a)

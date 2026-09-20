@@ -1,3 +1,4 @@
+local fonts = require("client.fonts")
 
 -- lootplot.singleplayer\client\DescriptionBox.lua
 local globalScale = require("client.global_scale")
@@ -10,7 +11,7 @@ local RICH_TEXT_TYPE = "richtext"
 local SEPARATOR = "---"
 local DRAWABLE_TYPE = "drawable"
 local NEWLINE_TYPE = "\n"
-local defaultFont = love.graphics.newFont("/assets/fonts/monogram-extended.ttf", 32, "mono", 1) or love.graphics.getFont()
+local defaultFont = fonts.getDefaultFont(32)
 
 ---@alias lootplot.DescriptionBoxFunction fun(x:number,y:number,w:number,h:number)
 ---@class lootplot.singleplayer._DescriptionBoxData
