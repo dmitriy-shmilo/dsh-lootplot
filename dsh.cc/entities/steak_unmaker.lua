@@ -37,7 +37,7 @@ local ACTIVATE_FOOD_BUTTON = {
 
 lp.defineItem("dsh.cc:steak_unmaker", {
 	name = loc("Steak Unmaker"),
-	image = "steak_unmaker",
+	image = "dsh_steak_unmaker",
 	description = loc("Activates all possible food."),
 	baseMaxActivations = 1,
 	rarity = lp.rarities.RARE,

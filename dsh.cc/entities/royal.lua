@@ -6,7 +6,7 @@ if not config.royalSlot then return end
 
 lp.defineSlot("dsh.cc:royal_slot", {
 	name = loc("Royal Slot"),
-	image = "royal_slot",
+	image = "dsh_royal_slot",
 	description = loc("Will not hold plebean %{rarity} items or below.", {
 		rarity = lp.rarities.RARE.displayString
 	}),
@@ -26,7 +26,7 @@ lp.defineSlot("dsh.cc:royal_slot", {
 
 lp.defineItem("dsh.cc:royal_flask", {
 	name = loc("Royal Flask"),
-	image = "royal_flask",
+	image = "dsh_royal_flask",
 	description = loc("Spawns royal slots, which will not hold items of %{rarity} or below.", {
 		rarity = lp.rarities.RARE.displayString
 	}),
@@ -52,7 +52,7 @@ lp.defineItem("dsh.cc:royal_flask", {
 
 lp.defineItem("dsh.cc:other_basilisks_eye", {
 	name = loc("The Other Basilisk's Eye"),
-	image = "other_basilisks_eye",
+	image = "dsh_other_basilisks_eye",
 	activateDescription = loc("Set rarity of items/slots to %{EPIC}", {
 		EPIC = lp.rarities.EPIC.displayString
 	}),

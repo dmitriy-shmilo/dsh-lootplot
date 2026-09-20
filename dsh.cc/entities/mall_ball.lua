@@ -125,7 +125,7 @@ lp.defineSlot("dsh.cc:mall_reroll_button", {
 local RICH_DESC = loc("Start with a huge shop and expensive rerolls. Original idea by {lootplot:BORING_COLOR}Voltgojjj{/lootplot:BORING_COLOR}.")
 lp.defineItem("dsh.cc:mall_ball", {
 	name = loc("Mall Ball"),
-	image = "mall_ball",
+	image = "dsh_mall_ball",
 	canItemFloat = true,
 	triggers = { "PULSE" },
 	description = loc("Start with a huge shop and expensive rerolls. Original idea by Voltgojjj."),

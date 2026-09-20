@@ -37,7 +37,7 @@ local ERASE_BUTTON = {
 
 lp.defineItem("dsh.cc:eraser", {
 	name = loc("Eraser"),
-	image = "eraser",
+	image = "dsh_eraser",
 	description = loc("Erases an item or slot from the board. Has an activation button. Always costs $10 to activate. Doesn't work on curses. Original idea by {lootplot:BORING_COLOR}d:sys{/lootplot:BORING_COLOR}."),
 	baseMaxActivations = 20,
 	rarity = lp.rarities.EPIC,

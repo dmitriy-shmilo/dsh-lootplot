@@ -210,7 +210,7 @@ end
 local RICH_DESC = loc("Start with two items of your choice. Original idea by {lootplot:BORING_COLOR}sysem fan{/lootplot:BORING_COLOR}.")
 lp.defineItem("dsh.cc:choice_ball", {
 	name = loc("Choice Ball"),
-	image = "choice_ball",
+	image = "dsh_choice_ball",
 	canItemFloat = true,
 	triggers = { "PULSE" },
 	description = loc("Start with two items of your choice. Original idea by sysem fan."),
