@@ -74,14 +74,13 @@ A collection of utility and cool hacks, which enable other mods' functionality. 
 
 ### Installation ###
 
-1. Download this repository.
-2. Open the desired mod folder.
-3. Run `install.bat` from within the folder.
+1. Go to the [releases section](https://github.com/dmitriy-shmilo/dsh-lootplot/releases).
+2. Download any `[mod-name]-[version]` zip file(s).
+3. Unzip the archive contents into your `%APPDATA%/Roaming/lootplot/mods/` folder.
 
-Or run `install-all.bat` from the root folder if you'd like to install all available mods.
+Make sure you end up with `%APPDATA%/Roaming/lootplot/mods/[mod-name]` folder structure, not the `%APPDATA%/Roaming/lootplot/mods/[mod-name-version]/[mod-name]` one.
 
-### Manual Installation ###
 
-1. Download this repository.
-2. Copy any desired mod's `src` folder contents into `%APPDATA%/Roaming/lootplot/mods/[mod-name]`.
-3. Copy `dsh.lib/src` contents into the `%APPDATA%/Roaming/lootplot/mods/[mod-name]` folder, merging the corresponding `server`, `client` and `shared` subfolders' contents.
+### Contribution ###
+
+Playtesting, bug reports and feature requests are greatly appreciated. Feel free to open an issue here on github, or contact me in any other way.

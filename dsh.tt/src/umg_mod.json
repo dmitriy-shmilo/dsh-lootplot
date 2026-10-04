@@ -1,4 +1,6 @@
 {
+	"id": "dsh.tt",
+	"version": "1.0.0",
 	"type": "addon",
 	"name": "DSH Trophy Territory",
 	"description": "Adds user-suggested achivements and unlockables.",

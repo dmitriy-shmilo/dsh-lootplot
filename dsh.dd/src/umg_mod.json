@@ -1,4 +1,6 @@
 {
+	"id": "dsh.dd",
+	"version": "1.0.0",
 	"type": "addon",
 	"name": "DSH Daunting Difficulty",
 	"description": "Increased difficulty mod.",

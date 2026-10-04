@@ -1,10 +1,11 @@
 {
+	"id": "dsh.qq",
+	"version": "1.0.0",
 	"type": "addon",
 	"name": "DSH Quirky Quality",
 	"description": "Adds small quality of life utilities.",
 	"author": "Dmitriy Shmilo",
 	"source": "https://github.com/dmitriy-shmilo/dsh-lootplot",
-	"version": 0,
 	"uses": [
 		"chat",
 		"localization",

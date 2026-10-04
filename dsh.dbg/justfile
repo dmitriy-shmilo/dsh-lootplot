@@ -1,0 +1,6 @@
+import '../common.justfile'
+
+build dest:
+	just clean {{dest}}
+	mkdir -p "{{dest}}/{{id}}"
+	cp -r "src/." "{{dest}}/{{id}}"
