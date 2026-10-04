@@ -83,5 +83,5 @@ Or run `install-all.bat` from the root folder if you'd like to install all avail
 ### Manual Installation ###
 
 1. Download this repository.
-2. Copy any desired mod folder into `%APPDATA%/Roaming/lootplot/mods`.
-3. Copy `dsh.lib` contents into the `%APPDATA%/Roaming/lootplot/mods/[mod]` folder, merging the corresponding `server`, `client` and `shared` subfolders' contents.
+2. Copy any desired mod's `src` folder contents into `%APPDATA%/Roaming/lootplot/mods/[mod-name]`.
+3. Copy `dsh.lib/src` contents into the `%APPDATA%/Roaming/lootplot/mods/[mod-name]` folder, merging the corresponding `server`, `client` and `shared` subfolders' contents.
