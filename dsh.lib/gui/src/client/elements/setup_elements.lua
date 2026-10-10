@@ -4,4 +4,5 @@ return function(gui)
 	require("client.elements.ImageButton")(gui)
 	require("client.elements.DisclosureButton")(gui)
 	require("client.elements.Toggle")(gui)
+	require("client.elements.PagedUniformList")(gui)
 end
