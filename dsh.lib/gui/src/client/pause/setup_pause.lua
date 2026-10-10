@@ -70,7 +70,7 @@ local function setupDefaults(gui)
 		priority = -1,
 		items = {
 			[1] = {
-				color = { r = 215 / 255, g = 215 / 255, b = 215/255 },
+				color = { 215 / 255, 215 / 255, 215/255 },
 				tooltip = "Main Settings",
 				image = "gear",
 				renderContent = renderStandardControls,

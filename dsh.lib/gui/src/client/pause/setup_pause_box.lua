@@ -1,5 +1,5 @@
 local ITEM_SPACING = 1
-local ITEM_COLOR = { r = 215 / 255, g = 215 / 255, b = 215 / 255 }
+local ITEM_COLOR = { 215 / 255, 215 / 255, 215 / 255 }
 local ITEM_IMAGE = "gear"
 
 local gui = {}

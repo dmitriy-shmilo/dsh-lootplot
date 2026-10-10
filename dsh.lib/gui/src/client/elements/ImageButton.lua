@@ -20,11 +20,7 @@ return function(gui)
 	local noop = function()end
 
 	function ImageButton:init()
-		self.color = {
-			r = 0,
-			g = 0,
-			b = 0
-		}
+		self.backgroundColor = { 1, 1, 1}
 		self.image = ""
 		self.isPushButton = false
 		self.isPushed = false
@@ -34,9 +30,7 @@ return function(gui)
 
 	function ImageButton:setColor(rgba)
 		if not rgba then return end
-		self.color.r = rgba.r
-		self.color.g = rgba.g
-		self.color.b = rgba.b
+		self.backgroundColor = rgba
 	end
 
 	function ImageButton:setImage(image)
@@ -68,7 +62,7 @@ return function(gui)
 
 	function ImageButton:onRender(x, y, w, h)
 		local gs = gui.globalScale.get()
-		love.graphics.setColor(self.color.r, self.color.g, self.color.b)
+		love.graphics.setColor(self.backgroundColor)
 		if self:isPressed() then
 			backgroundPressed9:draw(x, y, w / gs, h / gs, 0, gs, gs)
 		else

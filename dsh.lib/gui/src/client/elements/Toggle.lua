@@ -6,7 +6,6 @@ return function(gui)
 	local Toggle = ui.Element("ui:Toggle")
 
 	local defaultClick = function(toggle)
-		print("defaultClick")
 		toggle:setIsToggled(not toggle.isToggled)
 	end
 
@@ -46,12 +45,10 @@ return function(gui)
 	end
 
 	function Toggle:onStartHover(mx, my)
-		print("onStartHover")
 		self._onHover(self, true, mx, my)
 	end
 
 	function Toggle:onEndHover(mx, my)
-		print("onEndHover")
 		self._onHover(self, false, mx, my)
 	end
 
