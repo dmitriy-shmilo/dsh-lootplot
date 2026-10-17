@@ -1,0 +1,1 @@
+umg.definePacket("dsh.qq:toggleRerollSlotLock", { typelist = { "boolean" }})

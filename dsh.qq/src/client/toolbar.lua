@@ -3,6 +3,7 @@ local DescriptionBox = require("client.DescriptionBox")
 local query = require("shared.query")
 local overlay = require("client.overlay")
 local timer = require("client.timer")
+local reroll = require("shared.reroll")
 
 local toolbarState = {
     isActive = false,
@@ -79,6 +80,43 @@ local toolbarState = {
         end
     },
     overlayButtons = {},
+    bulkActionGroupButton = {
+        x = 0,
+        y = 0,
+        width = 16,
+        height = 16,
+        image = "wildcard_shards",
+        isActive = false,
+        getTooltip = function(self)
+            return "Bulk Actions"
+        end
+    },
+    bulkActionButtons = {
+        [1] = {
+            width = 16,
+            height = 16,
+            x = 0,
+            y = 0,
+            trigger = t,
+            image = "dsh_reroll_slot_lock",
+            click = function (self)
+                client.send("dsh.qq:toggleRerollSlotLock", true)
+            end,
+            getTooltip = function() return "Lock all reroll slots" end
+        },
+        [2] = {
+            width = 16,
+            height = 16,
+            x = 0,
+            y = 0,
+            trigger = t,
+            image = "dsh_reroll_slot_unlock",
+            click = function (self)
+                client.send("dsh.qq:toggleRerollSlotLock", false)
+            end,
+            getTooltip = function() return "Unlock all reroll slots" end
+        }
+    },
     timeButton = {
         x = 0,
         y = 0,
@@ -166,6 +204,13 @@ local function getHoweredItem(x, y)
         end
     end
 
+    if isHowering(toolbarState.bulkActionGroupButton, x, y) then return toolbarState.bulkActionGroupButton end
+    if toolbarState.bulkActionGroupButton.isActive then
+        for _, b in pairs(toolbarState.bulkActionButtons) do
+            if isHowering(b, x, y) then return b end
+        end
+    end
+
     if isHowering(toolbarState.timeButton, x, y) then return toolbarState.timeButton end
 
     return nil
@@ -202,6 +247,15 @@ function toolbarState.overlayGroupButton:click()
     overlay.setOverlay("", false)
 end
 
+function toolbarState.bulkActionGroupButton:click()
+    self.isActive = not self.isActive
+    if not self.isActive then
+        for _, b in ipairs(toolbarState.bulkActionButtons) do
+            b.isActive = false
+        end
+    end
+end
+
 function toolbarState.timeButton:click()
     self.isActive = not self.isActive
     timer:setVisible(self.isActive)
@@ -236,6 +290,13 @@ umg.on("@mousepressed", function(x, y, button, istouch, presses)
     tryClick(toolbarState.overlayGroupButton, x, y)
     if toolbarState.overlayGroupButton.isActive then
         for _, b in ipairs(toolbarState.overlayButtons) do
+            tryClick(b, x, y)
+        end
+    end
+
+    tryClick(toolbarState.bulkActionGroupButton, x, y)
+    if toolbarState.bulkActionGroupButton.isActive then
+        for _, b in ipairs(toolbarState.bulkActionButtons) do
             tryClick(b, x, y)
         end
     end
@@ -321,6 +382,27 @@ umg.on("@draw", 1, function()
         end
     end
 
+    love.graphics.setColor(1, 1, 1, 1)
+    rendering.drawImage(
+        toolbarState.bulkActionGroupButton.image,
+        toolbarState.bulkActionGroupButton.x,
+        toolbarState.bulkActionGroupButton.y,
+        0,
+        scale,
+        scale)
+
+    if toolbarState.bulkActionGroupButton.isActive then
+        for i, b in ipairs(toolbarState.bulkActionButtons) do
+            rendering.drawImage(
+                b.image,
+                b.x,
+                b.y,
+                0,
+                scale,
+                scale)
+        end
+    end
+
     if toolbarState.timeButton.isActive then
         love.graphics.setColor(1, 1, 1, 1)
     else
@@ -387,10 +469,22 @@ local function updatePositions(w, h)
         b.y = toolbarState.overlayGroupButton.y
     end
 
+    toolbarState.bulkActionGroupButton.width = BUTTON_SIZE * scale
+    toolbarState.bulkActionGroupButton.height = BUTTON_SIZE * scale
+    toolbarState.bulkActionGroupButton.x = w - toolbarState.searchButton.width * 1.5
+    toolbarState.bulkActionGroupButton.y = toolbarState.overlayGroupButton.y + toolbarState.overlayGroupButton.height + BUTTON_MARGIN
+
+    for i, b in ipairs(toolbarState.bulkActionButtons) do
+        b.width = BUTTON_SIZE * scale
+        b.height = BUTTON_SIZE * scale
+        b.x = toolbarState.bulkActionGroupButton.x - i * (b.width + BUTTON_MARGIN)
+        b.y = toolbarState.bulkActionGroupButton.y
+    end
+
     toolbarState.timeButton.width = BUTTON_SIZE * scale
     toolbarState.timeButton.height = BUTTON_SIZE * scale
     toolbarState.timeButton.x = w - toolbarState.searchButton.width * 1.5
-    toolbarState.timeButton.y = toolbarState.overlayGroupButton.y + toolbarState.overlayGroupButton.height + BUTTON_MARGIN
+    toolbarState.timeButton.y = toolbarState.bulkActionGroupButton.y + toolbarState.bulkActionGroupButton.height + BUTTON_MARGIN
 end
 
 umg.on("@load", function()

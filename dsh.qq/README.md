@@ -73,3 +73,9 @@ Currently supported overlays are:
 ![Screenshot10](../images/dsh_qq_screenshot10.png)
 
 Adds a timer button to the top-right toolbar, which allows toggling the current play session timer. Currently, the timer doesn't track cumulative run time between multiple game sessions, this feature might be added in the future. Timer will automatically stop when the game is won or lost.
+
+## Bulk Actions ##
+
+![Screenshot12](../images/dsh_qq_screenshot12.png)
+
+Adds a bulk actions button. Currently it allows locking or unlocking all reroll slots on the field.
