@@ -55,8 +55,11 @@ etypes.redefineItem("lootplot.s0:star_card", "dsh.dd:star_card", {
 	unlockAfterWins = 2,
 	target = {
 		type = "ITEM",
+		filter = function(_, _, targEnt)
+			return targEnt.target and targEnt.shape and not targEnt.foodItem and not lib.hasTag(targEnt, lib.tags.FOOD)
+		end,
 		target = function(ent, ppos, targEnt)
-			return targEnt.target and targEnt.shape and not lib.hasTag(targEnt, lib.tags.FOOD)
+			return targEnt.target and targEnt.shape and not targEnt.foodItem and not lib.hasTag(targEnt, lib.tags.FOOD)
 		end
 	},
 	onActivate = shuffleTargetShapes
@@ -75,8 +78,11 @@ etypes.redefineItem("lootplot.s0:star", "dsh.dd:star", {
 	unlockAfterWins = 2,
 	target = {
 		type = "ITEM",
+		filter = function(_, _, targEnt)
+			return targEnt.target and targEnt.shape and not targEnt.foodItem and not lib.hasTag(targEnt, lib.tags.FOOD)
+		end,
 		target = function(ent, ppos, targEnt)
-			return targEnt.target and targEnt.shape and not lib.hasTag(targEnt, lib.tags.FOOD)
+			return targEnt.target and targEnt.shape and not targEnt.foodItem and not lib.hasTag(targEnt, lib.tags.FOOD)
 		end
 	},
 	onActivate = shuffleTargetShapes

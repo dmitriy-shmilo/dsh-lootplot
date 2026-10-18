@@ -4,11 +4,13 @@ local loc = localization.localize
 
 if not config.modestDiscounts then return end
 
+local GRUB_MONEY_CAP = 20
+
 etypes.redefineItem("lootplot.s0:pineapple_ring", "dsh.dd:pineapple_ring", {
 	name = loc("Pineapple Ring"),
 	image = "pineapple_ring",
 	basePrice = 14,
-	grubMoneyCap = 20,
+	grubMoneyCap = GRUB_MONEY_CAP,
 	canItemFloat = true,
 	activateDescription = loc("Make all target items {lootplot:MONEY_COLOR}$2{/lootplot:MONEY_COLOR} cheaper. Won't reduce price below zero."),
 
